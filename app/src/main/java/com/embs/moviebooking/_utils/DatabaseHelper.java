@@ -41,13 +41,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-
     public Cursor execRawQuery(String query, String[] args) {
-        Cursor result = null;
-        try {
-            result = this.getWritableDatabase().rawQuery(query, args);
+        try (Cursor result = this.getWritableDatabase().rawQuery(query, args)){
+            return result;
         } catch (Exception e) {
+            return null;
         }
-        return result;
     }
 }
