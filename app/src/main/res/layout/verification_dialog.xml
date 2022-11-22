@@ -126,15 +126,6 @@
             android:layout_marginRight="2dp"
             />
         <TextView
-            android:paddingTop="9dp"
-            android:textColor="#1D7EE6"
-            android:drawablePadding="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_marginRight="2dp"
-            />
-        <TextView
             android:id="@+id/countdown"
             android:paddingTop="9dp"
             android:drawablePadding="2dp"
