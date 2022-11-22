@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean dropDbs( String[] dbNames) {
         SQLiteDatabase db = getWritableDatabase();
-
+    }
     public boolean dropDbs(SQLiteDatabase db, String[] dbNames) {
 
         for (String dbName : dbNames)
