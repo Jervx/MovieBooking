@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".home.HomeActivity">
 
     <TextView
@@ -17,4 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
+=======
+    tools:context="._home.Home">
+
+>>>>>>> ac2c7fe (creating home)
 </androidx.constraintlayout.widget.ConstraintLayout>

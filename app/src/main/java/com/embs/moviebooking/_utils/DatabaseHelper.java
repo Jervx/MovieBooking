@@ -16,23 +16,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
     }
-
     public void checkTableExist() {
         SQLiteDatabase db = this.getWritableDatabase();
         String checkUserTable = "CREATE TABLE IF NOT EXISTS user ( uid INTEGER PRIMARY KEY AUTOINCREMENT, image TEXT, email TEXT, username TEXT, password TEXT );";
         // TODO DB TBLS
         db.execSQL(checkUserTable);
     }
+<<<<<<< HEAD
 
     public boolean dropDbs( String[] dbNames) {
         SQLiteDatabase db = getWritableDatabase();
+=======
+    public boolean dropDbs(SQLiteDatabase db, String[] dbNames) {
+>>>>>>> ac2c7fe (creating home)
         for (String dbName : dbNames)
             db.execSQL(String.format("drop Table if exists %s", dbName));
         return true;
@@ -45,7 +47,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-
     public Cursor execRawQuery(String query, String[] args) {
         Cursor result;
         try {
@@ -55,13 +56,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return result;
     }
-
     public boolean insert(ContentValues values, String table){
         SQLiteDatabase db = getWritableDatabase();
         long result = db.insert(table, null, values);
         return result != -1 ;
     }
-
     public boolean update(ContentValues values, String condition, String table){
         SQLiteDatabase db = getWritableDatabase();
         long result = db.update(table, values, condition , null);

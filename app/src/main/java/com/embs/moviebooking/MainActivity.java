@@ -20,13 +20,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  WindowManager.LayoutParams.FLAG_FULLSCREEN);
-<<<<<<< HEAD
+
         setContentView(R.layout.activity_main);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
 //        dbHelper.dropDbs(new String[] {"user"});
 //        dbHelper.truncateDbs(new String[] {"user"});
         dbHelper.checkTableExist();
+<<<<<<< HEAD
 
 <<<<<<< HEAD
         User dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.loading);
 >>>>>>> b095eb9 (commit)
 >>>>>>> fc01821 (commit)
+=======
+        setContentView(R.layout.loading);
+>>>>>>> ac2c7fe (creating home)
         viewFront();
     }
 
