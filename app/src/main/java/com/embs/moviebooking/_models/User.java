@@ -141,6 +141,7 @@ public class User implements Serializable {
             }
         }
     }
+<<<<<<< HEAD
 
     public void fetchSelf(DatabaseHelper dbHelper){
         try{
@@ -157,6 +158,8 @@ public class User implements Serializable {
         }
     }
 
+=======
+>>>>>>> baa5e0b (homiie)
     @Override
     public String toString() {
         return "User{" +

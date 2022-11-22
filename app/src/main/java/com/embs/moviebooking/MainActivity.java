@@ -17,20 +17,15 @@ import com.embs.moviebooking.front.front;
 import com.embs.moviebooking.home.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
 //        dbHelper.dropDbs(new String[] {"user"});
 //        dbHelper.truncateDbs(new String[] {"user"});
         dbHelper.checkTableExist();
-
         User dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
         dummyUser.saveState(getApplicationContext(), dbHelper, true);
 
