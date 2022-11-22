@@ -15,7 +15,6 @@ import com.embs.moviebooking._home.Home;
 import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
-import com.embs.moviebooking.home.HomeActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class login extends AppCompatActivity {

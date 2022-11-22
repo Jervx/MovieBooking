@@ -27,13 +27,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean dropDbs( String[] dbNames) {
         SQLiteDatabase db = getWritableDatabase();
-    }
-    public boolean dropDbs(SQLiteDatabase db, String[] dbNames) {
-
         for (String dbName : dbNames)
             db.execSQL(String.format("drop Table if exists %s", dbName));
         return true;
     }
+
     public boolean truncateDbs(String[] dbNames) {
         SQLiteDatabase db = getWritableDatabase();
         for (String dbName : dbNames)
