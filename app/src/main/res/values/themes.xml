@@ -9,12 +9,22 @@
 
 
     <style name="myButton">
-        <item name="android:backgroundTint">@color/semipink</item>
+        <item name="android:backgroundTint">#ffb43a</item>
         <item name="boxStrokeWidth">12dp</item>
-        <item name="boxBackgroundColor">@color/semipink</item>
         <item name="android:textSize">13dp</item>
         <item name="cornerRadius">9sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="frontButton">
+        <item name="android:backgroundTint">#ffb43a</item>
+        <item name="boxStrokeWidth">12dp</item>
+        <item name="android:textSize">15dp</item>
+        <item name="cornerRadius">30sp</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textColor">@color/black</item>
+
     </style>
 
 

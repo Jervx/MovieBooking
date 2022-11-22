@@ -1,0 +1,110 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1c1c27"
+    tools:context=".login.login">
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_marginHorizontal="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/front_bg" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-30dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/secular_one"
+            android:text="AM"
+            android:textColor="#eeeeef"
+            android:textSize="110dp" />
+        <TextView
+            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/secular_one"
+            android:text="BOOKING APP"
+            android:textColor="#eeeeef"
+            android:textSize="21dp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/log"
+            android:textAllCaps="false"
+            android:fontFamily="@font/muli_black"
+            android:textColor="#4A4747"
+            android:textSize="15sp"
+            android:typeface="normal"
+            android:text="LOGIN"
+            android:shadowColor="#E8FDB33A"
+            style="@style/frontButton"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/secular_one"
+            android:text="or"
+            android:textColor="#eeeeef"
+            android:textSize="14dp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/sign"
+            android:textAllCaps="false"
+            android:fontFamily="@font/muli_black"
+            android:textColor="#4A4747"
+            android:textSize="15sp"
+            android:typeface="normal"
+            android:text="SIGNUP"
+            style="@style/frontButton"
+            />
+    </RelativeLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="© 2022 The Movie Boking. All rights reserved."
+            android:textSize="13sp"
+            android:textColor="#ECECED"
+            android:layout_marginRight="2dp"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>

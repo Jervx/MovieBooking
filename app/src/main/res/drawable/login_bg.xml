@@ -169,7 +169,7 @@
       android:fillAlpha="0.1"/>
   <path
       android:pathData="M108,146.1m-86,0a86,86 0,1 1,172 0a86,86 0,1 1,-172 0"
-      android:fillColor="#ff6584"/>
+      android:fillColor="#ffb43a"/>
   <path
       android:pathData="M157.7,216.8a3,7 114.9,1 0,2.5 -5.4a3,7 114.9,1 0,-2.5 5.4z"
       android:fillColor="#fbbebe"/>
