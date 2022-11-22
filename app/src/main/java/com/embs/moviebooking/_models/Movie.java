@@ -7,11 +7,25 @@ import android.widget.Toast;
 
 import com.embs.moviebooking._utils.DatabaseHelper;
 
+import java.util.ArrayList;
+
 public class Movie {
     private int uid;
     private String moviecover, title, description, cinema, day, time, seats, taken;
 
     public Movie(int uid, String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken) {
+        this.uid = uid;
+        this.moviecover = moviecover;
+        this.title = title;
+        this.description = description;
+        this.cinema = cinema;
+        this.day = day;
+        this.time = time;
+        this.seats = seats;
+        this.taken = taken;
+    }
+
+    public Movie(String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken) {
         this.uid = uid;
         this.moviecover = moviecover;
         this.title = title;
@@ -95,6 +109,31 @@ public class Movie {
         this.taken = taken;
     }
 
+    public ArrayList<Integer> getSeatsList(){
+        ArrayList <Integer> availables = new ArrayList<>();
+        for(String seat : getSeats().split(","))
+            availables.add(Integer.parseInt(seat));
+        return availables;
+    }
+
+    public void takeSeat(int seatnumber){
+        ArrayList <Integer> currentList = getSeatsList();
+        String newSeats = "";
+        for(Integer ST : currentList)
+            if(ST != seatnumber)
+                newSeats += (ST+",");
+
+        if(currentList.size() > 0) newSeats = newSeats.substring(0, newSeats.length() - 1);
+        setSeats(newSeats);
+        appendToTaken(seatnumber);
+    }
+
+    private void appendToTaken(int seat){
+        String oldTaken = getTaken();
+        String newTaken = (oldTaken.length() == 0 ? "" : oldTaken + "," )+seat;
+        setTaken(newTaken);
+    }
+
     private ContentValues getSelfContentValues(){
         ContentValues vals = new ContentValues();
 
@@ -112,9 +151,9 @@ public class Movie {
 
     public boolean saveState(Context context, DatabaseHelper dbHelper, boolean isNew){
         if(isNew){
-
             if(dbHelper.insert(getSelfContentValues(), "movie")){
                 System.out.println("Movie : New movie Saved Self");
+                fetchSelf(dbHelper);
                 return true;
             }else{
                 Toast.makeText(null, "Failed to create movie", Toast.LENGTH_LONG);
@@ -149,4 +188,18 @@ public class Movie {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "uid=" + uid +
+                ", moviecover='" + moviecover + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", cinema='" + cinema + '\'' +
+                ", day='" + day + '\'' +
+                ", time='" + time + '\'' +
+                ", seats='" + seats + '\'' +
+                ", taken='" + taken + '\'' +
+                '}';
+    }
 }

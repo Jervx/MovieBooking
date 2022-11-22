@@ -35,4 +35,11 @@ public class Helper {
         return new Random().nextInt(9);
     }
 
+    public static String seatGenerator(int startseat, int endseat){
+        String seat = "";
+        for(; startseat <= endseat; startseat++)
+            seat += startseat + (startseat == endseat ? "" : ",");
+        return seat;
+    }
+
 }
