@@ -1,9 +1,12 @@
 package com.embs.moviebooking._utils;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.Date;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -23,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void checkTableExist() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String checkUserTable = "CREATE TABLE IF NOT EXISTS user ( userId INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT );";
+        String checkUserTable = "CREATE TABLE IF NOT EXISTS user ( uid INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT );";
         // TODO DB TBLS
         db.execSQL(checkUserTable);
     }
@@ -34,7 +37,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean truncateDbs(SQLiteDatabase db, String[] dbNames) {
+    public boolean truncateDbs(String[] dbNames) {
+        SQLiteDatabase db = getWritableDatabase();
         for (String dbName : dbNames)
             db.execSQL(String.format("DELETE FROM %s", dbName));
         db.close();
@@ -48,4 +52,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return null;
         }
     }
+
+    public boolean insert(ContentValues values, String table){
+        SQLiteDatabase db = getWritableDatabase();
+        long result = db.insert(table, null, values);
+        return result != -1 ;
+    }
+
+    public boolean update(ContentValues values, String condition, String table){
+        SQLiteDatabase db = getWritableDatabase();
+        long result = db.update(table, values, condition , null);
+        return result != -1 ;
+    }
+
 }

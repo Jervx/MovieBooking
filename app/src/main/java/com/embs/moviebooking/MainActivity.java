@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking.front.front;
 import com.embs.moviebooking.login.login;
 
@@ -24,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+//        dbHelper.dropDbs(new String[] {"user"})
+//        dbHelper.truncateDbs(new String[] {"user"});
+        dbHelper.checkTableExist();
+
         viewFront();
     }
 
