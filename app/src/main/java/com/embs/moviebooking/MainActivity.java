@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  WindowManager.LayoutParams.FLAG_FULLSCREEN);
+<<<<<<< HEAD
         setContentView(R.layout.activity_main);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -29,9 +30,15 @@ public class MainActivity extends AppCompatActivity {
 //        dbHelper.truncateDbs(new String[] {"user"});
         dbHelper.checkTableExist();
 
+<<<<<<< HEAD
         User dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
         dummyUser.saveState(getApplicationContext(), dbHelper, true);
 
+=======
+=======
+        setContentView(R.layout.loading);
+>>>>>>> b095eb9 (commit)
+>>>>>>> fc01821 (commit)
         viewFront();
     }
 
@@ -40,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent front = new Intent(getApplicationContext(), front.class);
-                startActivity(front);
+//                startActivity(front);
             }
         },2000);
     }

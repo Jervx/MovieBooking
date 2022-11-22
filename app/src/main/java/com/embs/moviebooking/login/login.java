@@ -1,7 +1,6 @@
 package com.embs.moviebooking.login;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -71,6 +70,9 @@ public class login extends AppCompatActivity {
                 startActivity(goToSignup);
             }
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> fc01821 (commit)
     }
 }
