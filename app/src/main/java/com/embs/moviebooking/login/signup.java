@@ -89,7 +89,6 @@ public class signup extends AppCompatActivity {
         JavaMailAPI mail = new JavaMailAPI(this, email.getText().toString(), "Your verification code", key+"");
         mail.execute();
     }
-
     public void loading() {
         Dialog verify = new Dialog(signup.this);
         verify.setContentView(R.layout.verification_dialog);
@@ -112,7 +111,6 @@ public class signup extends AppCompatActivity {
         //start time
         startTime();
     }
-
     public void startTime(){
         CountDownTimer start = new CountDownTimer(200000, 1000) {
             @Override
