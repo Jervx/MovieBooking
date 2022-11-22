@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Helper {
 
-    final static String EMAIL = "securesally@gmail.com", PASS = "htrnfenswszubgmv";
+    final static String EMAIL = "tripleam2022@gmail.com", PASS = "htrnfenswszubgmv";
 
     public static String hashPassword(String toHash) {
         String hashed = BCrypt.hashpw(toHash, BCrypt.gensalt());
