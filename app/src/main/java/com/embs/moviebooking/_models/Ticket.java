@@ -1,12 +1,12 @@
 package com.embs.moviebooking._models;
 
 public class Ticket {
-    int uid, userId, MovieId, day, time, cinema, seatnumber, purchaseddate ;
+    int uid, userid, movieid, day, time, cinema, seatnumber, purchaseddate ;
 
-    public Ticket(int uid, int userId, int movieId, int day, int time, int cinema, int seatnumber, int purchaseddate) {
+    public Ticket(int uid, int userid, int movieid, int day, int time, int cinema, int seatnumber, int purchaseddate) {
         this.uid = uid;
-        this.userId = userId;
-        MovieId = movieId;
+        this.userid = userid;
+        this.movieid = movieid;
         this.day = day;
         this.time = time;
         this.cinema = cinema;
@@ -22,20 +22,20 @@ public class Ticket {
         this.uid = uid;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
-    public int getMovieId() {
-        return MovieId;
+    public int getMovieid() {
+        return movieid;
     }
 
-    public void setMovieId(int movieId) {
-        MovieId = movieId;
+    public void setMovieid(int movieid) {
+        this.movieid = movieid;
     }
 
     public int getDay() {

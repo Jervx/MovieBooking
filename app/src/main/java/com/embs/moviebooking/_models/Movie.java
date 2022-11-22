@@ -2,11 +2,11 @@ package com.embs.moviebooking._models;
 
 public class Movie {
     private int uid;
-    private String movieCover, title, description, cinema, day, time, tickets, totalseats, taken;
+    private String moviecover, title, description, cinema, day, time, tickets, totalseats, taken;
 
-    public Movie(int uid, String movieCover, String title, String description, String cinema, String day, String time, String tickets, String totalseats, String taken) {
+    public Movie(int uid, String moviecover, String title, String description, String cinema, String day, String time, String tickets, String totalseats, String taken) {
         this.uid = uid;
-        this.movieCover = movieCover;
+        this.moviecover = moviecover;
         this.title = title;
         this.description = description;
         this.cinema = cinema;
@@ -25,12 +25,12 @@ public class Movie {
         this.uid = uid;
     }
 
-    public String getMovieCover() {
-        return movieCover;
+    public String getmoviecover() {
+        return moviecover;
     }
 
-    public void setMovieCover(String movieCover) {
-        this.movieCover = movieCover;
+    public void setmoviecover(String moviecover) {
+        this.moviecover = moviecover;
     }
 
     public String getTitle() {
