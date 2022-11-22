@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewFront();
     }
-
-
     public void viewFront(){
         new Handler().postDelayed(new Runnable() {
             @Override
