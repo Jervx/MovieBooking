@@ -2,19 +2,17 @@ package com.embs.moviebooking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ProgressBar;
 
+import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
+import com.embs.moviebooking._utils.Helper;
 import com.embs.moviebooking.front.front;
-import com.embs.moviebooking.login.login;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,12 +25,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-//        dbHelper.dropDbs(new String[] {"user"})
+//        dbHelper.dropDbs(new String[] {"user"});
 //        dbHelper.truncateDbs(new String[] {"user"});
         dbHelper.checkTableExist();
 
+        User dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
+        dummyUser.saveState(getApplicationContext(), dbHelper, true);
+
         viewFront();
     }
+
     public void viewFront(){
         new Handler().postDelayed(new Runnable() {
             @Override

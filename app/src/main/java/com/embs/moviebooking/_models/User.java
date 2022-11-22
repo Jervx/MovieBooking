@@ -1,15 +1,19 @@
 package com.embs.moviebooking._models;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
 import com.embs.moviebooking._utils.DatabaseHelper;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private int uid, state;
-    private String email, username, password;
+    private String image, email, username, password;
 
     public int getUid() {
         return uid;
@@ -47,6 +51,14 @@ public class User {
         this.state = state;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     /*
     * Sets user password hash
     *
@@ -58,12 +70,25 @@ public class User {
 
     public User(String email){ this.email = email; }
 
-    public User(int uid, String email, String username, String password, int state) {
+    public User(String image, String email, String username, String password) {
         this.uid = uid;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.state = state;
+    }
+
+    public User(String email, String username, String password) {
+        this.uid = uid;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(int uid, String email, String username, String password) {
+        this.uid = uid;
+        this.email = email;
+        this.username = username;
+        this.password = password;
     }
 
     /* returns boolean if a user with the email already exist
@@ -73,28 +98,30 @@ public class User {
      *
      * */
     public boolean checkIfAlreadyExist(DatabaseHelper dbHelper){
-        Cursor curs = dbHelper.execRawQuery("SELECT * FROM user WHERE email ='"+this.email+"'", null);
+        Cursor curs = dbHelper.execRawQuery("SELECT * FROM user WHERE email='"+this.email+"'", null);
         if(curs != null && curs.getCount() > 0) return true;
         return false;
     }
-
 
         /* Saves current object state to user table
         *
          * @args DatabaseHelper an instance of DatabaseHelper
          * @args isNew indicastes if this user is a new user, if user already exist this will return false
          * */
-    public boolean saveState(DatabaseHelper dbHelper, boolean isNew){
+    public boolean saveState(Context context, DatabaseHelper dbHelper, boolean isNew){
         if(isNew){
             if(checkIfAlreadyExist(dbHelper)){
-                Toast.makeText(null, "User already exist", Toast.LENGTH_SHORT).show();
+                System.out.println("USER : Failed New User, Duplics Desu");
+                Toast.makeText(context, "User already exist", Toast.LENGTH_SHORT).show();
                 return false;
             }
             ContentValues vals = new ContentValues();
+            vals.put("image", this.image);
             vals.put("email", this.email);
             vals.put("username", this.username);
             vals.put("password", this.password);
             if(dbHelper.insert(vals, "user")){
+                System.out.println("USER : New User Saved Self");
                 return true;
             }else{
                 Toast.makeText(null, "Failed to create", Toast.LENGTH_LONG);
@@ -102,15 +129,32 @@ public class User {
             }
         }else{
             ContentValues vals = new ContentValues();
+            vals.put("image", this.image);
             vals.put("email", this.email);
             vals.put("username", this.username);
             vals.put("password", this.password);
             if( dbHelper.update(vals, "email='"+this.email+"'", "user") ){
                 Toast.makeText(null, "Failed to save state", Toast.LENGTH_LONG);
+                System.out.println("USER : Updated Self");
                 return true;
             }else{
                 return false;
             }
+        }
+    }
+
+    public void fetchSelf(DatabaseHelper dbHelper){
+        try{
+            Cursor findUser = dbHelper.execRawQuery(String.format("SELECT * FROM user WHERE email = '%s';", email), null);
+            if (findUser == null || findUser.getCount() == 0 || !findUser.moveToNext()) return;
+            this.setUid(findUser.getInt(0));
+            this.setImage(findUser.getString(1));
+            this.setEmail(findUser.getString(2));
+            this.setUsername(findUser.getString(3));
+            this.setPassword(findUser.getString(4));
+            System.out.println("DATA : "+findUser.getInt(0)+" "+findUser.getString(1) + " "+findUser.getString(2) + " "+findUser.getString(3)+" "+findUser.getString(4));
+        }catch(Exception e){
+            System.out.println("ERR ON FETCH " + e);
         }
     }
 

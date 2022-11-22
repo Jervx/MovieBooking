@@ -26,12 +26,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void checkTableExist() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String checkUserTable = "CREATE TABLE IF NOT EXISTS user ( uid INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT );";
+        String checkUserTable = "CREATE TABLE IF NOT EXISTS user ( uid INTEGER PRIMARY KEY AUTOINCREMENT, image TEXT, email TEXT, username TEXT, password TEXT );";
         // TODO DB TBLS
         db.execSQL(checkUserTable);
     }
 
-    public boolean dropDbs(SQLiteDatabase db, String[] dbNames) {
+    public boolean dropDbs( String[] dbNames) {
+        SQLiteDatabase db = getWritableDatabase();
         for (String dbName : dbNames)
             db.execSQL(String.format("drop Table if exists %s", dbName));
         return true;
@@ -46,11 +47,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor execRawQuery(String query, String[] args) {
-        try (Cursor result = this.getWritableDatabase().rawQuery(query, args)){
-            return result;
+        Cursor result;
+        try {
+            result = this.getWritableDatabase().rawQuery(query, args);
         } catch (Exception e) {
             return null;
         }
+        return result;
     }
 
     public boolean insert(ContentValues values, String table){
