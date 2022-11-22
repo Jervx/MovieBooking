@@ -9,18 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.Date;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
     public DatabaseHelper(Context context) {
         super(context, "MovieBooking.db", null, 1);
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
     }
     public void checkTableExist() {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -39,7 +35,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(String.format("drop Table if exists %s", dbName));
         return true;
     }
-
     public boolean truncateDbs(String[] dbNames) {
         SQLiteDatabase db = getWritableDatabase();
         for (String dbName : dbNames)

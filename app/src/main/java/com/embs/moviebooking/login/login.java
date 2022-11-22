@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.embs.moviebooking.R;
+import com.embs.moviebooking._home.Home;
 import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
@@ -20,7 +21,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class login extends AppCompatActivity {
     private TextView signup;
     private TextInputEditText email, pass;
-    private Button btnlogin;
+    private Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +29,15 @@ public class login extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
-
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
 
         email = findViewById(R.id.email);
         pass = findViewById(R.id.pass);
 
-        btnlogin = findViewById(R.id.btnlogin);
+        login = findViewById(R.id.login);
         signup = findViewById(R.id.signup);
 
-        btnlogin.setOnClickListener( JohnySinsei -> {
+        login.setOnClickListener( JohnySinsei -> {
             try{
                 String _email = email.getText().toString(), _pass = pass.getText().toString();
 
@@ -62,7 +62,22 @@ public class login extends AppCompatActivity {
             }catch (Exception e){ System.out.println("ERRR " + e);}
         });
 
+        // find id
+        signup = findViewById(R.id.signup);
+        login = findViewById(R.id.login);
+
         signup.setClickable(true);
+        clickMeBaby();
+    }
+
+    public void clickMeBaby(){
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToHome = new Intent(getApplicationContext(), Home.class);
+                startActivity(goToHome);
+            }
+        });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,9 +85,8 @@ public class login extends AppCompatActivity {
                 startActivity(goToSignup);
             }
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> fc01821 (commit)
     }
+
+
+
 }

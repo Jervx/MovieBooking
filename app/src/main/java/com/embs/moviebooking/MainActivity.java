@@ -18,12 +18,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_main);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
+<<<<<<< HEAD
 //        dbHelper.dropDbs(new String[] {"user"});
 //        dbHelper.truncateDbs(new String[] {"user"});
         dbHelper.checkTableExist();
@@ -41,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
 =======
         setContentView(R.layout.loading);
 >>>>>>> ac2c7fe (creating home)
+=======
+//      dbHelper.dropDbs(new String[] {"user"})
+//      dbHelper.truncateDbs(new String[] {"user"});
+        dbHelper.checkTableExist();
+>>>>>>> baa5e0b (homiie)
         viewFront();
     }
 

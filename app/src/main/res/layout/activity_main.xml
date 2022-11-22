@@ -42,10 +42,30 @@
             android:textColor="#eeeeef"
             android:textSize="21dp" />
     </LinearLayout>
-    <com.github.ybq.android.spinkit.SpinKitView
-        style="@style/SpinKitView.Large.ThreeBounce"
-        android:layout_width="wrap_content"
+    <ProgressBar
+        android:layout_marginTop="30dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:paddingHorizontal="120dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:SpinKit_Color="@color/yellow" />
+        android:indeterminateBehavior="cycle"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/yellow"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/secular_one"
+            android:text="Loading..."
+            android:textColor="#eeeeef"
+            />
+
+    </LinearLayout>
 </LinearLayout>
