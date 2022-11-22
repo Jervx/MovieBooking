@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,14 +25,15 @@ import com.embs.moviebooking.front.front;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class signup extends AppCompatActivity {
-    TextView signin;
+    TextView signin,emailName;
     private TextInputEditText email, username, pass, confirm_pass;
-    private Button btnlogin;
+    private Button btnlogin, verifyCode;
     private String key;
     private User newUsr;
     private DatabaseHelper dbHelper;
     private Dialog load;
-
+    private EditText code;
+    private ImageButton closeVeriDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,7 @@ public class signup extends AppCompatActivity {
                     _username = username.getText().toString(),
                     _password = pass.getText().toString(),
                     _confirm_pass = confirm_pass.getText().toString();
-            loading();
+
             if (_email.length() == 0 || _username.length() == 0 || _password.length() == 0 || _confirm_pass.length() == 0) {
                 Toast.makeText(this, "Please Fill Up All Fields", Toast.LENGTH_LONG).show();
                 return;
@@ -71,7 +74,9 @@ public class signup extends AppCompatActivity {
 
             JavaMailAPI mail = new JavaMailAPI(this, _email, "Your verification code", key+"");
             mail.execute();
+             // loading first with verifyCode hahaha not final delay lng yung loading neto erp
 
+              verify();
 
 
 
@@ -89,17 +94,27 @@ public class signup extends AppCompatActivity {
 
 
 
-
-
-    public void verify() {
+    public void loading() {
         Dialog verify = new Dialog(signup.this);
         verify.setContentView(R.layout.verification_dialog);
         verify.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         verify.getWindow().getAttributes().windowAnimations = R.style.diagAnim;
+        code =  verify.findViewById(R.id.code);
+        verifyCode = verify.findViewById(R.id.verify);
+        emailName = verify.findViewById(R.id.clickEmail);
+        emailName.setText(email.getText().toString());
+        closeVeriDialog = verify.findViewById(R.id.closeV);
+
+        //close dialog
+        closeVeriDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {  verify.dismiss(); } });
+
+        //call dialog
         verify.show();
     }
 
-    public void loading() {
+    public void verify() {
         load = new Dialog(signup.this);
         load.setContentView(R.layout.loading);
         load.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -109,10 +124,19 @@ public class signup extends AppCompatActivity {
             @Override
             public void run() {
                 load.dismiss();
-                verify();
+                loading();
+                verifyCode.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(!verifyCode.getText().toString().equals(key)) Toast.makeText(signup.this, "registration failed", Toast.LENGTH_LONG).show();
+                         onSuccess();
+                         Toast.makeText(signup.this, "registration Successful", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         }, 2000);
     }
+
 
     public void onSuccess() {
         newUsr.setState(1);
@@ -122,5 +146,4 @@ public class signup extends AppCompatActivity {
             startActivity(homeIntent);
         }
     }
-
 }
