@@ -40,16 +40,12 @@ public class signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
         dbHelper = new DatabaseHelper(this);
-
         email = findViewById(R.id.email);
         username = findViewById(R.id.username);
         pass = findViewById(R.id.pass);
         confirm_pass = findViewById(R.id.confirm_pass);
-
         btnlogin = findViewById(R.id.btnlogin);
-
         btnlogin.setOnClickListener(JohnySensei -> {
             String _email = email.getText().toString(),
                     _username = username.getText().toString(),
