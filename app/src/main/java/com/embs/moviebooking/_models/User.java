@@ -100,6 +100,16 @@ public class User implements Serializable {
         return false;
     }
 
+    private ContentValues getSelfContentValues(){
+        ContentValues vals = new ContentValues();
+        vals.put("image", this.image);
+        vals.put("email", this.email);
+        vals.put("username", this.username);
+        vals.put("password", this.password);
+        vals.put("state", 1);
+        return vals;
+    }
+
         /* Saves current object state to user table
         *
          * @args DatabaseHelper an instance of DatabaseHelper
@@ -112,13 +122,8 @@ public class User implements Serializable {
                 Toast.makeText(context, "User already exist", Toast.LENGTH_SHORT).show();
                 return false;
             }
-            ContentValues vals = new ContentValues();
-            vals.put("image", this.image);
-            vals.put("email", this.email);
-            vals.put("username", this.username);
-            vals.put("password", this.password);
-            vals.put("state", 1);
-            if(dbHelper.insert(vals, "user")){
+
+            if(dbHelper.insert(getSelfContentValues(), "user")){
                 System.out.println("USER : New User Saved Self");
                 return true;
             }else{
@@ -126,18 +131,13 @@ public class User implements Serializable {
                 return false;
             }
         }else{
-            ContentValues vals = new ContentValues();
-            vals.put("image", this.image);
-            vals.put("email", this.email);
-            vals.put("username", this.username);
-            vals.put("password", this.password);
-            vals.put("state", this.state);
-            if( dbHelper.update(vals, "email='"+this.email+"'", "user") ){
+            if( !dbHelper.update(getSelfContentValues(), "email='"+this.email+"'", "user") ){
                 Toast.makeText(context, "Failed to save state", Toast.LENGTH_LONG);
                 System.out.println("USER : Updated Self");
-                return true;
-            }else{
                 return false;
+            }else{
+                fetchSelf(dbHelper);
+                return true;
             }
         }
     }

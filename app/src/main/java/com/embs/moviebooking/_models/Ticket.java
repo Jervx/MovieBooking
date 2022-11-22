@@ -1,16 +1,24 @@
 package com.embs.moviebooking._models;
 
-public class Ticket {
-    int uid, userId, MovieId, day, time, cinema, seatnumber, purchaseddate ;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.widget.Toast;
 
-    public Ticket(int uid, int userId, int movieId, int day, int time, int cinema, int seatnumber, int purchaseddate) {
+import com.embs.moviebooking._utils.DatabaseHelper;
+
+public class Ticket {
+    int uid, userid, movieid, seatnumber;
+    String day, time, cinema, purchaseddate ;
+
+    public Ticket(int uid, int userid, int movieid, int seatnumber, String day, String time, String cinema, String purchaseddate) {
         this.uid = uid;
-        this.userId = userId;
-        MovieId = movieId;
+        this.userid = userid;
+        this.movieid = movieid;
+        this.seatnumber = seatnumber;
         this.day = day;
         this.time = time;
         this.cinema = cinema;
-        this.seatnumber = seatnumber;
         this.purchaseddate = purchaseddate;
     }
 
@@ -22,44 +30,20 @@ public class Ticket {
         this.uid = uid;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
-    public int getMovieId() {
-        return MovieId;
+    public int getMovieid() {
+        return movieid;
     }
 
-    public void setMovieId(int movieId) {
-        MovieId = movieId;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
-    }
-
-    public int getCinema() {
-        return cinema;
-    }
-
-    public void setCinema(int cinema) {
-        this.cinema = cinema;
+    public void setMovieid(int movieid) {
+        this.movieid = movieid;
     }
 
     public int getSeatnumber() {
@@ -70,11 +54,86 @@ public class Ticket {
         this.seatnumber = seatnumber;
     }
 
-    public int getPurchaseddate() {
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(String cinema) {
+        this.cinema = cinema;
+    }
+
+    public String getPurchaseddate() {
         return purchaseddate;
     }
 
-    public void setPurchaseddate(int purchaseddate) {
+    public void setPurchaseddate(String purchaseddate) {
         this.purchaseddate = purchaseddate;
+    }
+
+    private ContentValues getSelfContentValues(){
+        ContentValues vals = new ContentValues();
+        vals.put("userid", this.userid);
+        vals.put("movieid", this.movieid);
+        vals.put("day", this.day);
+        vals.put("time", this.time);
+        vals.put("cinema", this.cinema);
+        vals.put("seatnumber", this.seatnumber);
+        vals.put("purchaseddate", this.purchaseddate);
+
+        return vals;
+    }
+
+    public boolean saveState(Context context, DatabaseHelper dbHelper, boolean isNew){
+        if(isNew){
+            if(dbHelper.insert(getSelfContentValues(), "ticket")){
+                System.out.println("Ticket : Ticket Saved Self");
+                return true;
+            }else{
+                Toast.makeText(null, "Failed to create ticket", Toast.LENGTH_LONG);
+                return false;
+            }
+        }else{
+            if( !dbHelper.update(getSelfContentValues(), "uid="+this.uid, "ticket") ){
+                Toast.makeText(context, "Failed to save ticket state", Toast.LENGTH_LONG);
+                System.out.println("Ticket : Updated Self");
+                return false;
+            }else{
+                fetchSelf(dbHelper);
+                return true;
+            }
+        }
+    }
+
+    public void fetchSelf(DatabaseHelper dbHelper){
+        try{
+            Cursor cur = dbHelper.execRawQuery(String.format("SELECT * FROM ticket WHERE uid=%d;", uid), null);
+            if (cur == null || cur.getCount() == 0 || !cur.moveToNext()) return;
+            setUid(cur.getInt(0));
+            setUserid(cur.getInt(1));
+            setMovieid(cur.getInt(2));
+            setDay(cur.getString(3));
+            setTime(cur.getString(4));
+            setCinema(cur.getString(5));
+            setSeatnumber(cur.getInt(6));
+            setPurchaseddate(cur.getString(7));
+        }catch(Exception e){
+            System.out.println("ERR ON FETCH " + e);
+        }
     }
 }
