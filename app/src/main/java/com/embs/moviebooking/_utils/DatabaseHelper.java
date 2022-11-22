@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String checkUserTable = "CREATE TABLE IF NOT EXISTS user ( uid INTEGER PRIMARY KEY AUTOINCREMENT, image TEXT, email TEXT, username TEXT, password TEXT, state INTEGER );";
-        String checkMovieTable = "CREATE TABLE IF NOT EXISTS movie ( uid INTEGER PRIMARY KEY AUTOINCREMENT, moviecover TEXT, title TEXT, description TEXT, cinema TEXT, day TEXT, time TEXT, tickets TEXT, totalseats TEXT, taken TEXT);";
+        String checkMovieTable = "CREATE TABLE IF NOT EXISTS movie ( uid INTEGER PRIMARY KEY AUTOINCREMENT, moviecover TEXT, title TEXT, description TEXT, cinema TEXT, day TEXT, time TEXT, seats TEXT, taken TEXT);";
         String checkTicketTable = "CREATE TABLE IF NOT EXISTS ticket ( uid INTEGER PRIMARY KEY AUTOINCREMENT, uid INTEGER, userid INTEGER, movieid INTEGER, day TEXT, time TEXT, cinema TEXT, seatnumber INTEGER, purchaseddate TEXT);";
 
         // TODO DB TBLS
