@@ -15,8 +15,6 @@ import com.embs.moviebooking._utils.Helper;
 import com.embs.moviebooking.front.front;
 
 public class MainActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent front = new Intent(getApplicationContext(), front.class);
-//                startActivity(front);
+                startActivity(front);
             }
         },2000);
     }
