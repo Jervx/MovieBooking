@@ -20,7 +20,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class login extends AppCompatActivity {
     private TextView signup;
-    private TextInputEditText email, pass;
+    private TextInputEditText email, username, pass;
     private Button btnlogin;
 
     @Override
@@ -56,11 +56,14 @@ public class login extends AppCompatActivity {
                     return;
                 }
 
+                usr.setState(1);
+                usr.saveState(getApplicationContext(), dbHelper, false);
+
                 Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 homeIntent.putExtra("usr", usr);
 
                 startActivity(homeIntent);
-            }catch (Exception e){ System.out.println("ERRR " + e);}
+            }catch (Exception e){ System.out.println("ERRR " + e); }
         });
 
         signup.setClickable(true);
@@ -71,6 +74,5 @@ public class login extends AppCompatActivity {
                 startActivity(goToSignup);
             }
         });
-
     }
 }

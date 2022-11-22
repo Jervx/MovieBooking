@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
@@ -13,6 +14,7 @@ import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
 import com.embs.moviebooking.front.front;
+import com.embs.moviebooking.home.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +34,21 @@ public class MainActivity extends AppCompatActivity {
         User dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
         dummyUser.saveState(getApplicationContext(), dbHelper, true);
 
-        viewFront();
+        Cursor hasLoggedIn = dbHelper.execRawQuery("SELECT * FROM user where state=1", null);
+
+        if(hasLoggedIn == null || hasLoggedIn.getCount() == 0){
+            hasLoggedIn.close();
+            viewFront();
+        }else{
+            hasLoggedIn.moveToNext();
+            dummyUser = new User(hasLoggedIn.getString(2));
+            dummyUser.fetchSelf(dbHelper);
+
+            Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            homeIntent.putExtra("usr", dummyUser);
+
+            startActivity(homeIntent);
+        }
     }
 
     public void viewFront(){

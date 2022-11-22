@@ -59,11 +59,6 @@ public class User implements Serializable {
         this.image = image;
     }
 
-    /*
-    * Sets user password hash
-    *
-    * @args password a hash string
-    * */
     public void setPassword(String password) {
         this.password = password;
     }
@@ -77,6 +72,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    /**
+     * Constructor that initializes 3 fields for user
+     *
+     * @param email email of user
+     * @param username username of user
+     * @param password hash of users password
+     * @return User returns instance of User
+     */
     public User(String email, String username, String password) {
         this.uid = uid;
         this.email = email;
@@ -91,12 +94,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    /* returns boolean if a user with the email already exist
-    *
-     * @args DatabaseHelper an instance of DatabaseHelper
-     * @args isNew indicastes if this user is a new user, if user already exist this will return false
-     *
-     * */
     public boolean checkIfAlreadyExist(DatabaseHelper dbHelper){
         Cursor curs = dbHelper.execRawQuery("SELECT * FROM user WHERE email='"+this.email+"'", null);
         if(curs != null && curs.getCount() > 0) return true;
@@ -120,6 +117,7 @@ public class User implements Serializable {
             vals.put("email", this.email);
             vals.put("username", this.username);
             vals.put("password", this.password);
+            vals.put("state", 1);
             if(dbHelper.insert(vals, "user")){
                 System.out.println("USER : New User Saved Self");
                 return true;
@@ -133,8 +131,9 @@ public class User implements Serializable {
             vals.put("email", this.email);
             vals.put("username", this.username);
             vals.put("password", this.password);
+            vals.put("state", this.state);
             if( dbHelper.update(vals, "email='"+this.email+"'", "user") ){
-                Toast.makeText(null, "Failed to save state", Toast.LENGTH_LONG);
+                Toast.makeText(context, "Failed to save state", Toast.LENGTH_LONG);
                 System.out.println("USER : Updated Self");
                 return true;
             }else{
@@ -152,7 +151,7 @@ public class User implements Serializable {
             this.setEmail(findUser.getString(2));
             this.setUsername(findUser.getString(3));
             this.setPassword(findUser.getString(4));
-            System.out.println("DATA : "+findUser.getInt(0)+" "+findUser.getString(1) + " "+findUser.getString(2) + " "+findUser.getString(3)+" "+findUser.getString(4));
+            this.setState(findUser.getInt(5));
         }catch(Exception e){
             System.out.println("ERR ON FETCH " + e);
         }
