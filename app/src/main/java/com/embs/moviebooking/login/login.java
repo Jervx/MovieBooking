@@ -59,7 +59,7 @@ public class login extends AppCompatActivity {
                 usr.setState(1);
                 usr.saveState(getApplicationContext(), dbHelper, false);
 
-                Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent homeIntent = new Intent(getApplicationContext(), Home.class);
                 homeIntent.putExtra("usr", usr);
 
                 startActivity(homeIntent);

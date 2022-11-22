@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.embs.moviebooking._home.Home;
 import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             dummyUser = new User(hasLoggedIn.getString(2));
             dummyUser.fetchSelf(dbHelper);
 
-            Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            Intent homeIntent = new Intent(getApplicationContext(), Home.class);
             homeIntent.putExtra("usr", dummyUser);
 
             startActivity(homeIntent);

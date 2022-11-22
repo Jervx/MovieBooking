@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.embs.moviebooking.R;
+import com.embs.moviebooking._home.Home;
 import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
@@ -85,7 +86,7 @@ public class signup extends AppCompatActivity {
     public void onSuccess(){
         newUsr.setState(1);
         if(newUsr.saveState(this, dbHelper, true)){
-            Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            Intent homeIntent = new Intent(getApplicationContext(), Home.class);
             homeIntent.putExtra("usr", newUsr);
             startActivity(homeIntent);
         }
