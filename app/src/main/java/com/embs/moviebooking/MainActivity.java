@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         viewFront();
     }
-
-
     public void viewFront(){
         new Handler().postDelayed(new Runnable() {
             @Override
