@@ -10,17 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:drawableLeft="@drawable/left"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/muli_bold"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="50dp"
-            android:text="Select seats"
-            android:textColor="#ECEAE7"
-            android:textSize="15sp" />
+            android:gravity="center"
+            >
+            <TextView
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/muli_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp"
+                android:text="Select seats"
+                android:textColor="#ECEAE7"
+                android:textSize="15sp" />
+
+        </LinearLayout>
 
         <ImageView
             android:layout_marginLeft="-10dp"

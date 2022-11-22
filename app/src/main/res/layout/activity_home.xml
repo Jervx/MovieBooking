@@ -112,19 +112,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:paddingTop="20dp"
         android:background="@color/trans"
         >
-
+        <ImageButton
+            android:id="@+id/back"
+            android:paddingStart="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/left"
+            android:background="@color/trans"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="end">
+
             <ImageView
                 android:layout_gravity="start"
                 android:id="@+id/settings"
                 android:paddingBottom="1dp"
-                android:paddingHorizontal="15dp"
+                android:paddingEnd="25dp"
                 android:paddingTop="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
