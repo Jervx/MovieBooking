@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-//        dbHelper.dropDbs(new String[] {"user"});
+      dbHelper.dropDbs(new String[] {"user"});
 //        dbHelper.truncateDbs(new String[] {"user"});
         dbHelper.checkTableExist();
 //        dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 //            dummyUser.setState(0);
 //            dummyUser.saveState(getApplicationContext(), dbHelper, true);
 //        }
-
         Cursor hasLoggedIn = dbHelper.execRawQuery("SELECT * FROM user where state=1", null);
 
         if(hasLoggedIn == null || hasLoggedIn.getCount() == 0){
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
             Intent homeIntent = new Intent(getApplicationContext(), Home.class);
             homeIntent.putExtra("usr", dummyUser);
-
             startActivity(homeIntent);
         }
     }

@@ -26,4 +26,9 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="diagAnim">
+        <item name="android:windowEnterAnimation">@anim/zoom_in</item>
+        <item name="android:windowExitAnimation">@anim/zoom_out</item>
+    </style>
+
 </resources>
