@@ -56,30 +56,31 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor hasLoggedIn = dbHelper.execRawQuery("SELECT * FROM user where state=1", null);
 
-        if(hasLoggedIn == null || hasLoggedIn.getCount() == 0){
-            hasLoggedIn.close();
-            viewFront();
-        }else{
-            hasLoggedIn.moveToNext();
-            dummyUser = new User(hasLoggedIn.getString(2));
-            System.out.println("USER DESU");
-            System.out.println(dummyUser.toString());
-            dummyUser.fetchSelf(dbHelper);
-
-            Intent homeIntent = new Intent(getApplicationContext(), Home.class);
-            homeIntent.putExtra("usr", dummyUser);
-            startActivity(homeIntent);
-        }
-    }
-
-    public void viewFront(){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent front = new Intent(getApplicationContext(), front.class);
-                startActivity(front);
+
+                if(hasLoggedIn == null || hasLoggedIn.getCount() == 0){
+                    hasLoggedIn.close();
+                    Intent front = new Intent(getApplicationContext(), front.class);
+                    startActivity(front);
+                    finish();
+                }else{
+                    hasLoggedIn.moveToNext();
+                    dummyUser = new User(hasLoggedIn.getString(2));
+                    System.out.println("USER DESU");
+                    System.out.println(dummyUser.toString());
+                    dummyUser.fetchSelf(dbHelper);
+
+                    Intent homeIntent = new Intent(getApplicationContext(), Home.class);
+                    homeIntent.putExtra("usr", dummyUser);
+                    startActivity(homeIntent);
+                    finish();
+                }
             }
         },2000);
+
+
     }
 
 }

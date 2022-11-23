@@ -7,10 +7,27 @@ import android.widget.Toast;
 
 import com.embs.moviebooking._utils.DatabaseHelper;
 
+import java.util.ArrayList;
+
 public class Movie {
     private int uid;
     private String moviecover, title, description, cinema, day, time, seats, taken, genre, duration;
     private float cost;
+
+    public Movie(int uid, String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken, String genre, String duration, float cost) {
+        this.uid = uid;
+        this.moviecover = moviecover;
+        this.title = title;
+        this.description = description;
+        this.cinema = cinema;
+        this.day = day;
+        this.time = time;
+        this.seats = seats;
+        this.taken = taken;
+        this.genre = genre;
+        this.duration = duration;
+        this.cost = cost;
+    }
 
     public Movie(String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken, String genre, String duration, float cost) {
         this.moviecover = moviecover;
@@ -131,7 +148,6 @@ public class Movie {
         return context.getResources().getIdentifier(String.format("drawable/%s", getMoviecover()), null, context.getPackageName());
     }
 
-
     private ContentValues getSelfContentValues(){
         ContentValues vals = new ContentValues();
 
@@ -189,5 +205,52 @@ public class Movie {
         }catch(Exception e){
             System.out.println("ERR ON FETCH " + e);
         }
+    }
+
+    /**Retrieve ang mga movei desu - jervx
+     *
+     * @param dbHelper need ko ng instance of DatabaseHelper desu
+     * @return ArrayList of <Movie>
+     */
+    public static ArrayList <Movie> getAllMovies(DatabaseHelper dbHelper){
+        ArrayList <Movie> alls = new ArrayList<>();
+        Cursor all = dbHelper.execRawQuery("SELECT * FROM movie", null);
+
+        while(all.moveToNext()){
+            alls.add(new Movie(
+                    all.getInt(0),
+                    all.getString(1),
+                    all.getString(2),
+                    all.getString(3),
+                    all.getString(4),
+                    all.getString(5),
+                    all.getString(6),
+                    all.getString(7),
+                    all.getString(8),
+                    all.getString(9),
+                    all.getString(10),
+                    all.getFloat(11)
+            ));
+        }
+
+        return alls;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "uid=" + uid +
+                ", moviecover='" + moviecover + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", cinema='" + cinema + '\'' +
+                ", day='" + day + '\'' +
+                ", time='" + time + '\'' +
+                ", seats='" + seats + '\'' +
+                ", taken='" + taken + '\'' +
+                ", genre='" + genre + '\'' +
+                ", duration='" + duration + '\'' +
+                ", cost=" + cost +
+                '}';
     }
 }
