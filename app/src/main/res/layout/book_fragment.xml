@@ -26,9 +26,7 @@
                 android:text="Select seats"
                 android:textColor="#ECEAE7"
                 android:textSize="15sp" />
-
         </LinearLayout>
-
         <ImageView
             android:layout_marginLeft="-10dp"
             android:layout_width="match_parent"
