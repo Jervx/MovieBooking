@@ -10,5 +10,6 @@
 
     <color name="semipink">#FD6483</color>
     <color name="trans">#00FD6483</color>
+    <color name="unselected">#8A8986</color>
     <color name="yellow">#E8FDB33A</color>
 </resources>
