@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="._home.home_fragment">
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+            <TextView
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/muli_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp"
+                android:text="Select seats"
+                android:textColor="#ECEAE7"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginLeft="-10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/curve_final"
+            />
+           <LinearLayout
+
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginHorizontal="30dp"
+               android:orientation="horizontal"
+               android:gravity="center"
+               >
+               <GridLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="20dp"
+                   android:columnCount="4"
+                   android:rowCount="4">
+                   <Button android:id="@+id/b1" style="@style/gridButton"/>
+                   <Button android:id="@+id/b2" style="@style/gridButton"/>
+                   <Button android:id="@+id/b3" style="@style/gridButton"/>
+                   <Button android:id="@+id/b4" style="@style/gridButton"/>
+                   <Button android:id="@+id/b5" style="@style/gridButton"/>
+                   <Button android:id="@+id/b6" style="@style/gridButton"/>
+                   <Button android:id="@+id/b7" style="@style/gridButton"/>
+                   <Button android:id="@+id/b8" style="@style/gridButton"/>
+                   <Button android:id="@+id/b9" style="@style/gridButton"/>
+                   <Button android:id="@+id/b10" style="@style/gridButton"/>
+                   <Button android:id="@+id/b11" style="@style/gridButton"/>
+                   <Button android:id="@+id/b12" style="@style/gridButton"/>
+                   <Button android:id="@+id/b13" style="@style/gridButton"/>
+                   <Button android:id="@+id/b14" style="@style/gridButton"/>
+                   <Button android:id="@+id/b15" style="@style/gridButton"/>
+                   <Button android:id="@+id/b16" style="@style/gridButton"/>
+               </GridLayout>
+               <GridLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:columnCount="4"
+                   android:rowCount="4">
+                   <Button android:id="@+id/b17" style="@style/gridButton"/>
+                   <Button android:id="@+id/b18" style="@style/gridButton"/>
+                   <Button android:id="@+id/b19" style="@style/gridButton"/>
+                   <Button android:id="@+id/b20" style="@style/gridButton"/>
+                   <Button android:id="@+id/b21" style="@style/gridButton"/>
+                   <Button android:id="@+id/b22" style="@style/gridButton"/>
+                   <Button android:id="@+id/b23" style="@style/gridButton"/>
+                   <Button android:id="@+id/b24" style="@style/gridButton"/>
+                   <Button android:id="@+id/b25" style="@style/gridButton"/>
+                   <Button android:id="@+id/b26" style="@style/gridButton"/>
+                   <Button android:id="@+id/b27" style="@style/gridButton"/>
+                   <Button android:id="@+id/b28" style="@style/gridButton"/>
+                   <Button android:id="@+id/b29" style="@style/gridButton"/>
+                   <Button android:id="@+id/b30" style="@style/gridButton"/>
+                   <Button android:id="@+id/b31" style="@style/gridButton"/>
+                   <Button android:id="@+id/b32" style="@style/gridButton"/>
+               </GridLayout>
+           </LinearLayout>
+        <LinearLayout
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:showDividers="middle"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <Button android:id="@+id/available" style="@style/catButton"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Available"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <Button android:id="@+id/selected" android:backgroundTint="@color/yellow" style="@style/catButton"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Selected"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <Button android:id="@+id/reserved" style="@style/catButton"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Reserved"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
