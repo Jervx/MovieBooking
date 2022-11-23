@@ -3,6 +3,7 @@ package com.embs.moviebooking.customview;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +16,7 @@ import com.embs.moviebooking.R;
 public class Seat extends MaterialButton {
     int seatnumber;
     boolean selected = false;
-    boolean taken = true;
+    boolean taken = false;
 
     public int getSeatnumber() {
         return seatnumber;
@@ -29,17 +30,27 @@ public class Seat extends MaterialButton {
         this.setLayoutParams(layoutParams);
     }
 
-    public void setTaken(boolean taken){
-        this.taken = taken;
-        setClickable(taken);
+    public boolean isSelectedSeat(){
+        return selected;
     }
 
-    public void flipSelect() {
+    public void setTaken(boolean taken){
+        this.taken = taken;
+        setClickable(false);
+    }
+
+    public void toggleSelect(){
         selected = !selected;
-        if(selected)
+    }
+
+    public void renderState() {
+        if(taken)
+            this.setBackgroundColor(getContext().getResources().getColor(R.color.unavailable));
+        else if(selected)
             this.setBackgroundColor(getContext().getResources().getColor(R.color.yellow));
-        else
-            this.setBackgroundColor(getContext().getResources().getColor(R.color.unselected));
+
+        if(!taken && !selected)
+            this.setBackgroundColor(getContext().getResources().getColor(R.color.available));
     }
 
     public Seat(@NonNull Context context) {

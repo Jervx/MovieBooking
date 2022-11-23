@@ -53,6 +53,7 @@
                </GridLayout>
                <GridLayout
                    android:id="@+id/right"
+                   android:useDefaultMargins="true"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:columnCount="4"
@@ -105,13 +106,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 >
-                <Button android:id="@+id/reserved" style="@style/catButton"/>
+                <Button android:id="@+id/reserved" style="@style/unavailableButton"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Reserved"
-                    />
+                    android:text="Reserved/Unavailable" />
             </LinearLayout>
 
 
@@ -138,12 +139,13 @@
                      app:cardCornerRadius="25dp"
                       android:layout_marginHorizontal="20dp"
                      >
+
                      <ImageView
+                         android:id="@+id/moviebanner"
+                         style="@style/imageStyle"
                          android:layout_width="110dp"
                          android:layout_height="170dp"
-                         android:src="@drawable/mvc_encnto"
-                         style="@style/imageStyle"
-                         />
+                         android:src="@drawable/mvc_encnto" />
                  </androidx.cardview.widget.CardView>
 
                  <GridLayout
@@ -153,15 +155,24 @@
                      android:columnCount="2"
                      android:rowCount="6">
                      <TextView  android:text="Title:" style="@style/gridLable" />
-                     <TextView  android:text="Encanto"  android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#fff" />
+
+                     <TextView
+                         android:id="@+id/titletxtv"
+                         android:fontFamily="@font/muli_bold"
+                         android:text="Encanto"
+                         android:textColor="#fff"
+                         android:textSize="15sp" />
                      <TextView  android:text="Description:" style="@style/gridLable" />
-                     <TextView  android:text="sample text"/>
+
+                     <TextView
+                         android:id="@+id/desctxtv"
+                         android:text=" sdsg sdg sd gsd gsd gsd gsd gsdgs ds asfas fsa fsa fasf as fa" />
                      <TextView  android:text="Cinema no:" style="@style/gridLable"  />
                      <TextView  android:id="@+id/cinemaNo" android:text="2" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#EDECE9" />
                      <TextView  android:text="Available seats:" style="@style/gridLable" />
                      <TextView android:id="@+id/availableSeat"  android:text="2" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#41C889" />
                      <TextView  android:text="Taken Seats:" style="@style/gridLable"/>
-                     <TextView  android:id="@+id/tekenSeat" android:text="2" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#D8495A" />
+                     <TextView  android:id="@+id/takenSeat" android:text="2" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#D8495A" />
                  </GridLayout>
 
 
@@ -188,27 +199,27 @@
                         />
 
                     <TextView
+                        android:id="@+id/total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textColor="#E8E7E4"
                         android:fontFamily="@font/muli_black"
                         android:text="#43.55"
                         android:textAlignment="center"
-                        android:textSize="23dp"
+                        android:textColor="#E8E7E4"
 
-                        />
+                        android:textSize="23dp" />
                 </LinearLayout>
+
                 <Button
+                    android:id="@+id/bookbtn"
+                    style="@style/bookTicket"
                     android:layout_width="180dp"
                     android:layout_height="70dp"
                     android:fontFamily="@font/muli_bold"
-                    android:textAllCaps="false"
-                    android:textColor="#3E3D3D"
-                    style="@style/bookTicket"
                     android:text="Book Ticket"
-                    >
-                </Button>
+                    android:textAllCaps="false"
+                    android:textColor="#3E3D3D"></Button>
             </LinearLayout>
             </LinearLayout>
         </LinearLayout>

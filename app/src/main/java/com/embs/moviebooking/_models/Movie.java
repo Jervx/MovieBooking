@@ -10,8 +10,8 @@ import com.embs.moviebooking._utils.DatabaseHelper;
 import java.util.ArrayList;
 
 public class Movie {
-    private int uid;
-    private String moviecover, title, description, cinema, day, time, seats, taken, genre, duration;
+    private int uid = -1;
+    private String moviecover, title, description, cinema, day, time, seats = "", taken = "", genre, duration;
     private float cost;
 
     public Movie(int uid, String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken, String genre, String duration, float cost) {
@@ -146,6 +146,34 @@ public class Movie {
      */
     public int getMovieCoverResID(Context context){
         return context.getResources().getIdentifier(String.format("drawable/%s", getMoviecover()), null, context.getPackageName());
+    }
+
+    public void takeSeat(int seat){
+        setSeats(removeFrom(getSeats(), seat+""));
+        setTaken(appendTo(getTaken(), seat+""));
+    }
+
+    public void removeTaken(int seat){
+        setTaken(removeFrom(getTaken(), seat+""));
+        setSeats(appendTo(getSeats(), seat+""));
+    }
+
+    public String removeFrom(String from, String what){
+        String newval = "";
+        for(String s : from.split(","))
+            if(!s.equals(what)) newval += s + ",";
+        int last = newval.length()-1;
+        if( last != -1 && newval.charAt(last) == ',') newval = newval.substring(0, last);
+        System.out.println("remove from "+from +" : "+what + " -> " + newval);
+        return newval;
+    }
+
+    public String appendTo(String to, String what){
+        String newval = to;
+        if(to.length() == 0) newval += what;
+        else newval += "," + what;
+        System.out.println("Append to "+to +" : "+what + " -> " + newval);
+        return newval;
     }
 
     private ContentValues getSelfContentValues(){

@@ -8,8 +8,9 @@
     <color name="black">#0A0A0A</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="semipink">#FD6483</color>
+    <color name="emipink">#FD6483</color>
     <color name="trans">#00FD6483</color>
-    <color name="unselected">#8A8986</color>
+    <color name="available">#8A8986</color>
+    <color name="unavailable">#222222</color>
     <color name="yellow">#E8FDB33A</color>
 </resources>
