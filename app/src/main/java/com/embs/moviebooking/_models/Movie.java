@@ -9,10 +9,10 @@ import com.embs.moviebooking._utils.DatabaseHelper;
 
 public class Movie {
     private int uid;
-    private String moviecover, title, description, cinema, day, time, seats, taken;
+    private String moviecover, title, description, cinema, day, time, seats, taken, genre, duration;
+    private float cost;
 
-    public Movie(int uid, String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken) {
-        this.uid = uid;
+    public Movie(String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken, String genre, String duration, float cost) {
         this.moviecover = moviecover;
         this.title = title;
         this.description = description;
@@ -21,6 +21,9 @@ public class Movie {
         this.time = time;
         this.seats = seats;
         this.taken = taken;
+        this.genre = genre;
+        this.duration = duration;
+        this.cost = cost;
     }
 
     public int getUid() {
@@ -95,6 +98,40 @@ public class Movie {
         this.taken = taken;
     }
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public float getCost() {
+        return cost;
+    }
+
+    public void setCost(float cost) {
+        this.cost = cost;
+    }
+
+    /**This converts the movie cover image into resource id (int)
+     *
+     * @param context
+     * @return resId which correspond to the resource id of a resource file
+     */
+    public int getMovieCoverResID(Context context){
+        return context.getResources().getIdentifier(String.format("drawable/%s", getMoviecover()), null, context.getPackageName());
+    }
+
+
     private ContentValues getSelfContentValues(){
         ContentValues vals = new ContentValues();
 
@@ -106,7 +143,9 @@ public class Movie {
         vals.put("time", time);
         vals.put("seats", seats);
         vals.put("taken", taken);
-
+        vals.put("genre", genre);
+        vals.put("duration", duration);
+        vals.put("cost", cost);
         return vals;
     }
 
@@ -144,9 +183,11 @@ public class Movie {
             setTime(cur.getString(5));
             setSeats(cur.getString(6));
             setTaken(cur.getString(7));
+            setGenre(cur.getString(8));
+            setDuration(cur.getString(9));
+            setCost(cur.getFloat(10));
         }catch(Exception e){
             System.out.println("ERR ON FETCH " + e);
         }
     }
-
 }
