@@ -10,7 +10,7 @@ import com.embs.moviebooking.R;
 
 
 public class Home extends AppCompatActivity {
-    ImageView home,book,cinema;
+    ImageView home,book,cinema,setting;
     ImageButton back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class Home extends AppCompatActivity {
         book = findViewById(R.id.bookIcon);
         cinema = findViewById(R.id.cinemaIcon);
         back = findViewById(R.id.back);
-
+        setting = findViewById(R.id.settings);
         route();
     }
     public void route(){
@@ -44,6 +44,14 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 cinema.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
                 getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, cinema_fragment.class, null).commit();
+            }
+        });
+
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setting.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
+                getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, settings.class, null).commit();
             }
         });
 
