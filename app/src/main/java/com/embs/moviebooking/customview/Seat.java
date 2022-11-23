@@ -7,23 +7,39 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 
-public class Seat extends AppCompatButton {
+import com.google.android.material.button.MaterialButton;
+
+public class Seat extends MaterialButton {
     int seatnumber;
     boolean selected;
 
-    public Seat(@NonNull Context context, int Seat) {
-        super(context);
+    public int getSeatnumber() {
+        return seatnumber;
+    }
+
+    public void setSeatnumber(int seatnumber) {
+        this.seatnumber = seatnumber;
+    }
+
+    @Override
+    public boolean isSelected() {
+        return selected;
+    }
+
+    @Override
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public Seat(@NonNull Context context) {
         super(context);
     }
 
-    public Seat(@NonNull Context context, int Seat, @Nullable AttributeSet attrs) {
+    public Seat(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public Seat(@NonNull Context context, int Seat, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public Seat(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 }
