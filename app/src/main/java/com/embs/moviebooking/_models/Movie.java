@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class Movie {
     private int uid;
-    private String moviecover, title, description, cinema, day, time, seats, taken;
+    private String moviecover, title, description, cinema, day, time, seats, taken, genre, duration;
 
-    public Movie(int uid, String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken) {
+    public Movie(int uid, String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken, String genre, String duration) {
         this.uid = uid;
         this.moviecover = moviecover;
         this.title = title;
@@ -23,18 +23,8 @@ public class Movie {
         this.time = time;
         this.seats = seats;
         this.taken = taken;
-    }
-
-    public Movie(String moviecover, String title, String description, String cinema, String day, String time, String seats, String taken) {
-        this.uid = uid;
-        this.moviecover = moviecover;
-        this.title = title;
-        this.description = description;
-        this.cinema = cinema;
-        this.day = day;
-        this.time = time;
-        this.seats = seats;
-        this.taken = taken;
+        this.genre = genre;
+        this.duration = duration;
     }
 
     public int getUid() {
@@ -109,6 +99,22 @@ public class Movie {
         this.taken = taken;
     }
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
     public ArrayList<Integer> getSeatsList(){
         ArrayList <Integer> availables = new ArrayList<>();
         for(String seat : getSeats().split(","))
@@ -145,7 +151,8 @@ public class Movie {
         vals.put("time", time);
         vals.put("seats", seats);
         vals.put("taken", taken);
-
+        vals.put("genre", genre);
+        vals.put("duration", duration);
         return vals;
     }
 
@@ -183,23 +190,11 @@ public class Movie {
             setTime(cur.getString(5));
             setSeats(cur.getString(6));
             setTaken(cur.getString(7));
+            setGenre(cur.getString(8));
+            setDuration(cur.getString(9));
         }catch(Exception e){
             System.out.println("ERR ON FETCH " + e);
         }
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "uid=" + uid +
-                ", moviecover='" + moviecover + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", cinema='" + cinema + '\'' +
-                ", day='" + day + '\'' +
-                ", time='" + time + '\'' +
-                ", seats='" + seats + '\'' +
-                ", taken='" + taken + '\'' +
-                '}';
-    }
 }
