@@ -52,7 +52,11 @@ public class book_fragment extends Fragment {
         View v =  inflater.inflate(R.layout.book_fragment, container, false);
 
         dbHelper = new DatabaseHelper(getContext());
-        currentMovie = new Movie("mvc_jwkchpt2", "John Wick: Chapter 2", "Retired super-assassin John Wick's plans to resume a quiet civilian life are cut short when Italian gangster Santino D'Antonio shows up on his doorstep with a gold marker, compelling him to repay past favours. Ordered by Winston, the kingpin of secret assassin society The Continental, to respect the organisation's ancient code, Wick reluctantly accepts the assignment to travel to Rome to take out D'Antonio's sister, the ruthless capo atop the Italian Camorra crime syndicate.", "Cinema 1", "Dec 1, 2022", "10:30 AM", /* Helper.seatGenerator(1, 32) */ "1", "2", "Action", "2h 2m", 149);
+
+        Bundle bundolf = this.getArguments();
+        try{
+            currentMovie = (Movie) bundolf.getSerializable("currentMovie");
+        }catch (Exception e){  }
 
         seatLeft = new ArrayList<>();
         seatRight = new ArrayList<>();
@@ -72,9 +76,17 @@ public class book_fragment extends Fragment {
             placeBook();
         });
 
-        renderMovieInfo();
-        genSeat();
-        render();
+        if(currentMovie == null){
+            Toast.makeText(getContext(), "You haven't selected a movie", Toast.LENGTH_LONG).show();
+            bookbtn.setText("No Chosen Movie");
+            total.setText("No Chosen Movie");
+            bookbtn.setClickable(false);
+        }else{
+            renderMovieInfo();
+            genSeat();
+            render();
+        }
+
         return v;
     }
 

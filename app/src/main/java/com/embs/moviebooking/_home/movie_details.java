@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.embs.moviebooking.R;
+import com.embs.moviebooking._models.Movie;
 
 
 public class movie_details extends Fragment {
@@ -31,13 +32,22 @@ public class movie_details extends Fragment {
         cost = v.findViewById(R.id.cost);
         duration = v.findViewById(R.id.duration);
         cover = v.findViewById(R.id.cover);
-        Bundle bundle = this.getArguments();
-        title.setText( bundle.getString("title"));
-        desc.setText(bundle.getString("desc"));
-        cost.setText(bundle.getString("cost"));
-        genre.setText(bundle.getString("genre"));
-        duration.setText(bundle.getString("duration"));
-        cover.setImageResource(bundle.getInt("cover"));
+        get = v.findViewById(R.id.get);
+
+        Bundle bundolf = this.getArguments();
+        Movie currentMovie = (Movie) bundolf.getSerializable("currentMovie");
+
+        get.setOnClickListener(JohnySinsei -> {
+            // TODO PANO TO?
+            getChildFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.movieFrag, book_fragment.class, bundolf).commit();
+        });
+
+        title.setText( currentMovie.getTitle() );
+        desc.setText( currentMovie.getDescription() );
+        cost.setText( currentMovie.getCost()+"" );
+        genre.setText( currentMovie.getGenre() );
+        duration.setText( currentMovie.getDuration() );
+        cover.setImageResource( currentMovie.getMovieCoverResID(getContext()));
 
         return v;
     }

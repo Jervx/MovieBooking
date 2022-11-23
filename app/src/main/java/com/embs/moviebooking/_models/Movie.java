@@ -7,9 +7,10 @@ import android.widget.Toast;
 
 import com.embs.moviebooking._utils.DatabaseHelper;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie implements Serializable {
     private int uid = -1;
     private String moviecover, title, description, cinema, day, time, seats = "", taken = "", genre, duration;
     private float cost;

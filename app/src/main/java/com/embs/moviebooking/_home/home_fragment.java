@@ -39,29 +39,8 @@ public class home_fragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int i, long arg3) {
                 Bundle bundle = new Bundle();
-                String title = Movie.getAllMovies(d).get(i).getTitle();
-                String cover = Movie.getAllMovies(d).get(i).getMoviecover();
-                String desc = Movie.getAllMovies(d).get(i).getDescription();
-                String cinema =Movie.getAllMovies(d).get(i).getCinema();
-                String day = Movie.getAllMovies(d).get(i).getDay();
-                String time =  Movie.getAllMovies(d).get(i).getTime();
-                String seat = Movie.getAllMovies(d).get(i).getSeats();
-                String taken = Movie.getAllMovies(d).get(i).getTaken();
-                String cost = String.valueOf(Movie.getAllMovies(d).get(i).getCost());
-                String duration = Movie.getAllMovies(d).get(i).getDuration();
-                String genre = Movie.getAllMovies(d).get(i).getGenre();
-                int resId = getContext().getResources().getIdentifier(String.format("drawable/%s", cover), null, getContext().getPackageName());
-                bundle.putString("title", title);
-                bundle.putString("desc", desc);
-                bundle.putString("cinema", cinema);
-                bundle.putString("day", day);
-                bundle.putString("time", time);
-                bundle.putString("seat",seat);
-                bundle.putString("taken", taken);
-                bundle.putString("cost", cost);
-                bundle.putString("genre", genre);
-                bundle.putString("duration", duration);
-                bundle.putInt("cover",resId);
+                Movie foc = Movie.getAllMovies(d).get(i);
+                bundle.putSerializable("currentMovie", foc);
                 getChildFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.movieFrag, movie_details.class, bundle).commit();
                 scroll.setVisibility(View.GONE);
             }

@@ -193,18 +193,19 @@
         </LinearLayout>
 
     </ScrollView>
+
     <Button
-        android:layout_marginBottom="80dp"
+        android:id="@+id/get"
+        style="@style/getReservation"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:textColor="#403F3E"
+        android:layout_marginBottom="80dp"
         android:text="Get reservation"
         android:textAllCaps="false"
-        style="@style/getReservation"
+        android:textColor="#403F3E"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </Button>
+        app:layout_constraintStart_toStartOf="parent"></Button>
     <LinearLayout
         android:paddingTop="480dp"
         android:layout_width="match_parent"
