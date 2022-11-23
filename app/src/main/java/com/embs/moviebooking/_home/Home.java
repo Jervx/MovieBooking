@@ -46,7 +46,6 @@ public class Home extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, cinema_fragment.class, null).commit();
             }
         });
-
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +53,6 @@ public class Home extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, settings.class, null).commit();
             }
         });
-
         ImageButton back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

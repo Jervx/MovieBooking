@@ -13,12 +13,14 @@
     <LinearLayout
         android:id="@+id/buttonBar"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="340dp"
         android:layout_alignParentBottom="true"
         android:paddingTop="63dp"
+
+        android:gravity="center"
         >
         <LinearLayout
-            android:paddingTop="13dp"
+            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"

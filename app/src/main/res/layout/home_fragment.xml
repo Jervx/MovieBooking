@@ -1,20 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="._home.home_fragment">
-
-    <ScrollView
+    <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
-        android:background="#F7FFFFFF"
-        android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/book_list"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                tools:listitem="@layout/movie_list"
-                tools:ignore="NestedScrolling" />
-
+        android:layout_height="match_parent"
+        android:id="@+id/movieFrag"
+        />
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#C4121212"
+        android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ListView
+                        android:id="@+id/movieList"
+                        android:layout_width="match_parent"
+                        android:layout_height="5500dp"
+                        android:divider="@null"
+                        android:dividerHeight="0dp"
+                        android:paddingVertical="60dp"
+                        android:scrollbars="none"
+                        tools:listitem="@layout/movie_list"></ListView>
+                </LinearLayout>
     </ScrollView>
+        <LinearLayout
+            android:paddingTop="480dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <ImageView
+                android:paddingTop="280dp"
+                android:layout_gravity="bottom"
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:src="@drawable/bg_nav" />
+        </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

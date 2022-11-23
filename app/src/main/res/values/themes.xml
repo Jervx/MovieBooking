@@ -15,6 +15,10 @@
         <item name="cornerRadius">9sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="getReservation">
+        <item name="android:backgroundTint">#ffb43a</item>
+        <item name="cornerRadius">50sp</item>
+    </style>
 
     <style name="frontButton">
         <item name="android:backgroundTint">#ffb43a</item>
@@ -51,7 +55,10 @@
         <item name="android:backgroundTint">#ffb43a</item>
         <item name="cornerRadius">50sp</item>
     </style>
-
+    <style name="movieButton">
+        <item name="android:backgroundTint">#7CFFB43A</item>
+        <item name="cornerRadius">50sp</item>
+    </style>
     <style name="gridLable">
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:textSize">12sp</item>
