@@ -7,12 +7,24 @@ import android.widget.Toast;
 
 import com.embs.moviebooking._utils.DatabaseHelper;
 
+import java.util.ArrayList;
+
 public class Ticket {
     int uid, userid, movieid, seatnumber;
     String day, time, cinema, purchaseddate ;
 
     public Ticket(int uid, int userid, int movieid, int seatnumber, String day, String time, String cinema, String purchaseddate) {
         this.uid = uid;
+        this.userid = userid;
+        this.movieid = movieid;
+        this.seatnumber = seatnumber;
+        this.day = day;
+        this.time = time;
+        this.cinema = cinema;
+        this.purchaseddate = purchaseddate;
+    }
+
+    public Ticket(int userid, int movieid, int seatnumber, String day, String time, String cinema, String purchaseddate) {
         this.userid = userid;
         this.movieid = movieid;
         this.seatnumber = seatnumber;
@@ -135,5 +147,64 @@ public class Ticket {
         }catch(Exception e){
             System.out.println("ERR ON FETCH " + e);
         }
+    }
+
+    /**Retrieve ang mga all ticket desu - jervx
+     *
+     * @param dbHelper need ko ng instance of DatabaseHelper desu
+     * @return ArrayList of <Ticket>
+     */
+    public static ArrayList<Ticket> getAllTickets(DatabaseHelper dbHelper){
+        ArrayList <Ticket> all = new ArrayList<>();
+
+        Cursor tkts = dbHelper.execRawQuery("SELECT * FROM ticket", null);
+        while(tkts.moveToNext()) all.add(new Ticket(
+                tkts.getInt(0),
+                tkts.getInt(1),
+                tkts.getInt(2),
+                tkts.getString(3),
+                tkts.getString(4),
+                tkts.getString(5),
+                tkts.getString(6)
+        ));
+
+        return all;
+    }
+
+    /**Retrieve ang mga all ticket of the specified user desu - jervx
+     *
+     * @param dbHelper need ko ng instance of DatabaseHelper desu
+     * @param uid need ko din ng unique id ng user
+     * @return ArrayList of <Movie>
+     */
+    public static ArrayList<Ticket> getAllUserTickets(DatabaseHelper dbHelper, int uid){
+        ArrayList <Ticket> all = new ArrayList<>();
+
+        Cursor tkts = dbHelper.execRawQuery("SELECT * FROM ticket where userid="+uid, null);
+        while(tkts.moveToNext()) all.add(new Ticket(
+                tkts.getInt(0),
+                tkts.getInt(1),
+                tkts.getInt(2),
+                tkts.getString(3),
+                tkts.getString(4),
+                tkts.getString(5),
+                tkts.getString(6)
+        ));
+
+        return all;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "uid=" + uid +
+                ", userid=" + userid +
+                ", movieid=" + movieid +
+                ", seatnumber=" + seatnumber +
+                ", day='" + day + '\'' +
+                ", time='" + time + '\'' +
+                ", cinema='" + cinema + '\'' +
+                ", purchaseddate='" + purchaseddate + '\'' +
+                '}';
     }
 }

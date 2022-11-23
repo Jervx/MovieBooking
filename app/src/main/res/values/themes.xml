@@ -47,6 +47,13 @@
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">30dp</item>
     </style>
+    <style name="unavailableButton">
+        <item name="backgroundTint">@color/unavailable</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="cornerRadius">10sp</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
     <style name="imageStyle">
         <item name="cornerRadius">40dp</item>
     </style>
