@@ -43,7 +43,23 @@
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">30dp</item>
     </style>
+    <style name="imageStyle">
+        <item name="cornerRadius">40dp</item>
+    </style>
 
+    <style name="bookTicket">
+        <item name="android:backgroundTint">#ffb43a</item>
+        <item name="cornerRadius">50sp</item>
+
+    </style>
+
+    <style name="gridLable">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BCBAB8</item>
+
+
+    </style>
 
 
 </resources>
