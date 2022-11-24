@@ -20,17 +20,16 @@ import com.embs.moviebooking.adapter.myTicketsAdapter;
 public class myTickets extends Fragment {
     ListView tickets;
     myTicketsAdapter m;
+    User currentUser;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.my_tickets_fragment, container, false);
         DatabaseHelper d = new DatabaseHelper(v.getContext());
-//        m = new movieAdapter(v.getContext(), Ticket.getAllUserTickets(d, User));
-//        tickets.setAdapter(m);
-
-
-
+        currentUser = (User) getArguments().get("currentUser");
+        m = new movieAdapter(v.getContext(), Ticket.getAllUserTickets(d, currentUser.getUid()));
+        tickets.setAdapter(m);
         return  v;
     }
 }

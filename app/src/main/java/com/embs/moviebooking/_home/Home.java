@@ -11,11 +11,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.embs.moviebooking.R;
+import com.embs.moviebooking._models.User;
+import com.embs.moviebooking._utils.DatabaseHelper;
 
 
 public class Home extends AppCompatActivity {
     ImageView home,book,ticket,setting;
     ImageButton back;
+    User currentUser;
+    DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,8 @@ public class Home extends AppCompatActivity {
         ticket = findViewById(R.id.cinemaIcon);
         back = findViewById(R.id.back);
         setting = findViewById(R.id.settings);
+        dbHelper = new DatabaseHelper(getApplicationContext());
+        currentUser = (User) getIntent().getSerializableExtra("currentUser");
         route();
     }
     public void route(){
@@ -83,11 +89,15 @@ public class Home extends AppCompatActivity {
     }
 
     public void swtchRoute(int route, Bundle bundolf){
+        if(bundolf.getSerializable("currentUser") != null) bundolf.remove("currentUser");
+        currentUser.fetchSelf(dbHelper);
+        bundolf.putSerializable("currentUser", currentUser);
         if(route == 0) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, home_fragment.class, bundolf).commit();
         if(route == 1) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, movie_details.class, bundolf).commit();
         if(route == 2) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, book_fragment.class, bundolf).commit();
         if(route == 3) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, cinema_fragment.class, bundolf).commit();
         if(route == 4) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, settings.class, bundolf).commit();
+        if(route == 5) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, myTickets.class, bundolf).commit();
     }
 
 }
