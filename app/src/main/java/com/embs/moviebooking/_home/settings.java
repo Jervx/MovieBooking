@@ -77,21 +77,12 @@ public class settings extends Fragment {
             File directory = cw.getDir("profiles", Context.MODE_PRIVATE);
             File file = new File(directory, Helper.toISODateString(new Date()) + "_PROFILE_"
                     + Helper.randomKey(8) + ".jpg");
-            if (!file.exists()) {
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-                    fos.flush();
-                    fos.close();
-                } catch (java.io.IOException e) {
-                    e.printStackTrace();
-                }
-            }
+
+            Helper.saveImage(file, bitmap);
+
             String abspath = file.toString();
             String prevImg = currentUser.getImage();
-            File toDelete = new File(prevImg);
-            toDelete.delete();
+            Helper.deleteFile(prevImg);
             currentUser.setImage(abspath);
         }catch (Exception e){}
 

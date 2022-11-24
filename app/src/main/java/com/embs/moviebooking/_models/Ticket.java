@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class Ticket {
     int uid, userid, movieid, seatnumber;
-    String day, time, cinema, purchaseddate ;
+    String day, time, cinema, purchaseddate, brcode ;
 
-    public Ticket(int uid, int userid, int movieid, int seatnumber, String day, String time, String cinema, String purchaseddate) {
+    public Ticket(int uid, int userid, int movieid, int seatnumber, String day, String time, String cinema, String purchaseddate, String brcode) {
         this.uid = uid;
         this.userid = userid;
         this.movieid = movieid;
@@ -22,9 +22,10 @@ public class Ticket {
         this.time = time;
         this.cinema = cinema;
         this.purchaseddate = purchaseddate;
+        this.brcode = brcode;
     }
 
-    public Ticket(int userid, int movieid, int seatnumber, String day, String time, String cinema, String purchaseddate) {
+    public Ticket(int userid, int movieid, int seatnumber, String day, String time, String cinema, String purchaseddate, String brcode) {
         this.userid = userid;
         this.movieid = movieid;
         this.seatnumber = seatnumber;
@@ -32,6 +33,7 @@ public class Ticket {
         this.time = time;
         this.cinema = cinema;
         this.purchaseddate = purchaseddate;
+        this.brcode = brcode;
     }
 
     public int getUid() {
@@ -98,6 +100,14 @@ public class Ticket {
         this.purchaseddate = purchaseddate;
     }
 
+    public String getBrcode() {
+        return brcode;
+    }
+
+    public void setBrcode(String brcode) {
+        this.brcode = brcode;
+    }
+
     private ContentValues getSelfContentValues(){
         ContentValues vals = new ContentValues();
         vals.put("userid", this.userid);
@@ -107,7 +117,7 @@ public class Ticket {
         vals.put("cinema", this.cinema);
         vals.put("seatnumber", this.seatnumber);
         vals.put("purchaseddate", this.purchaseddate);
-
+        vals.put("brcode", this.brcode);
         return vals;
     }
 
@@ -117,7 +127,7 @@ public class Ticket {
                 System.out.println("Ticket : Ticket Saved Self");
                 return true;
             }else{
-                Toast.makeText(null, "Failed to create ticket", Toast.LENGTH_LONG);
+                Toast.makeText(context, "Failed to create ticket", Toast.LENGTH_LONG);
                 return false;
             }
         }else{
@@ -144,6 +154,7 @@ public class Ticket {
             setCinema(cur.getString(5));
             setSeatnumber(cur.getInt(6));
             setPurchaseddate(cur.getString(7));
+            setBrcode(cur.getString(8));
         }catch(Exception e){
             System.out.println("ERR ON FETCH " + e);
         }
@@ -165,7 +176,8 @@ public class Ticket {
                 tkts.getString(3),
                 tkts.getString(4),
                 tkts.getString(5),
-                tkts.getString(6)
+                tkts.getString(6),
+                tkts.getString(7)
         ));
 
         return all;
@@ -188,7 +200,8 @@ public class Ticket {
                 tkts.getString(3),
                 tkts.getString(4),
                 tkts.getString(5),
-                tkts.getString(6)
+                tkts.getString(6),
+                tkts.getString(7)
         ));
 
         return all;
@@ -205,6 +218,7 @@ public class Ticket {
                 ", time='" + time + '\'' +
                 ", cinema='" + cinema + '\'' +
                 ", purchaseddate='" + purchaseddate + '\'' +
+                ", brcode='" + brcode + '\'' +
                 '}';
     }
 }

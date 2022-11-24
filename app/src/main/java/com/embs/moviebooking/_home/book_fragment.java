@@ -94,7 +94,7 @@ public class book_fragment extends Fragment {
 
     void placeBook(){
         for(Seat st : Chosen) {
-            Ticket tkinstance = new Ticket(0, currentMovie.getUid(), st.getSeatnumber(), currentMovie.getDay(), currentMovie.getTime(), currentMovie.getCinema(), Helper.toISODateString(new Date()));
+            Ticket tkinstance = new Ticket(0, currentMovie.getUid(), st.getSeatnumber(), currentMovie.getDay(), currentMovie.getTime(), currentMovie.getCinema(), Helper.toISODateString(new Date()), "");
             currentMovie.takeSeat(st.getSeatnumber());
             tkinstance.saveState(getContext(), dbHelper, true);
         }
