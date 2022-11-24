@@ -127,7 +127,7 @@ public class Ticket {
                 System.out.println("Ticket : Ticket Saved Self");
                 return true;
             }else{
-                Toast.makeText(null, "Failed to create ticket", Toast.LENGTH_LONG);
+                Toast.makeText(context, "Failed to create ticket", Toast.LENGTH_LONG);
                 return false;
             }
         }else{
