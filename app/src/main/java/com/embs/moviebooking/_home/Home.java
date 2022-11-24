@@ -24,33 +24,33 @@ public class Home extends AppCompatActivity {
         route();
     }
     public void route(){
-        getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, home_fragment.class, null).commit();
+        swtchRoute(0, null);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 home.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
-                getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, home_fragment.class, null).commit();
+                swtchRoute(0, null);
             }
         });
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 book.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
-                getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, book_fragment.class, null).commit();
+                swtchRoute(2, null);
             }
         });
         cinema.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cinema.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
-                getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, cinema_fragment.class, null).commit();
+                swtchRoute(3, null);
             }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setting.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
-                getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, settings.class, null).commit();
+                swtchRoute(4, null);
             }
         });
         ImageButton back = findViewById(R.id.back);
@@ -58,11 +58,18 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 home.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
-                getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, home_fragment.class, null).commit();
+                swtchRoute(0, null);
             }
         });
 
     }
 
+    public void swtchRoute(int route, Bundle bundolf){
+        if(route == 0) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, home_fragment.class, bundolf).commit();
+        if(route == 1) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, movie_details.class, bundolf).commit();
+        if(route == 2) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, book_fragment.class, bundolf).commit();
+        if(route == 3) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, cinema_fragment.class, bundolf).commit();
+        if(route == 4) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, settings.class, bundolf).commit();
+    }
 
 }

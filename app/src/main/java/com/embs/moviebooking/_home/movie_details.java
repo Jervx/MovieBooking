@@ -38,8 +38,8 @@ public class movie_details extends Fragment {
         Movie currentMovie = (Movie) bundolf.getSerializable("currentMovie");
 
         get.setOnClickListener(JohnySinsei -> {
-            // TODO PANO TO?
-            getChildFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.movieFrag, book_fragment.class, bundolf).commit();
+            Home parent = (Home) getActivity();
+            parent.swtchRoute(2, bundolf);
         });
 
         title.setText( currentMovie.getTitle() );
