@@ -1,7 +1,16 @@
 package com.embs.moviebooking._utils;
 
+import android.graphics.Bitmap;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
+
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -64,4 +73,37 @@ public class Helper {
         return Date.from(ZonedDateTime.parse(ISODateString).toInstant());
     }
 
+    public static Bitmap genQr(String content){
+        Bitmap btmp = null;
+
+        MultiFormatWriter mulform = new MultiFormatWriter();
+
+        try{
+            BitMatrix bitma = mulform.encode(content, BarcodeFormat.QR_CODE, 400, 400);
+            BarcodeEncoder baren = new BarcodeEncoder();
+            btmp = baren.createBitmap(bitma);
+        }catch (Exception e){
+
+        }
+        return btmp;
+    }
+
+    public static void saveImage(File file, Bitmap bitmap){
+        if (!file.exists()) {
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                fos.flush();
+                fos.close();
+            } catch (java.io.IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void deleteFile(String filepath){
+        File toDelete = new File(filepath);
+        toDelete.delete();
+    }
 }
