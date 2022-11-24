@@ -20,7 +20,6 @@ import java.util.List;
 
 public class myTicketsAdapter extends ArrayAdapter<Ticket> {
     static Ticket ticket;
-    private List<Ticket> itemList;
 
 //    int uid, userid, movieid, seatnumber;
 //    String day, time, cinema, purchaseddate, brcode ;
@@ -31,7 +30,7 @@ public class myTicketsAdapter extends ArrayAdapter<Ticket> {
     public View getView(int position, @Nullable View c, @NonNull ViewGroup parent) {
         ticket = getItem(position);
         if(c == null){
-            c = LayoutInflater.from(getContext()).inflate(R.layout.movie_list,parent,false);
+            c = LayoutInflater.from(getContext()).inflate(R.layout.ticket_list,parent,false);
         }
         TextView mID = c.findViewById(R.id.movieId);
         TextView time = c.findViewById(R.id.time);
@@ -42,8 +41,6 @@ public class myTicketsAdapter extends ArrayAdapter<Ticket> {
          time.setText(ticket.getTime());
          day.setText(ticket.getDay());
          cinemaNo.setText(ticket.getCinema());
-
-         System.out.println("movie ID: "+ticket.getMovieid()+" Time: "+ ticket.getTime());
 
         return c;
     }
