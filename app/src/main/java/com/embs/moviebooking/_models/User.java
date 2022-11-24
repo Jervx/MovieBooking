@@ -122,7 +122,6 @@ public class User implements Serializable {
                 Toast.makeText(context, "User already exist", Toast.LENGTH_SHORT).show();
                 return false;
             }
-
             if(dbHelper.insert(getSelfContentValues(), "user")){
                 System.out.println("USER : New User Saved Self");
                 return true;
@@ -141,7 +140,6 @@ public class User implements Serializable {
             }
         }
     }
-
     public void fetchSelf(DatabaseHelper dbHelper){
         try{
             Cursor findUser = dbHelper.execRawQuery(String.format("SELECT * FROM user WHERE email = '%s';", email), null);
@@ -156,7 +154,6 @@ public class User implements Serializable {
             System.out.println("ERR ON FETCH " + e);
         }
     }
-
     @Override
     public String toString() {
         return "User{" +

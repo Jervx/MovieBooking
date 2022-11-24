@@ -89,9 +89,14 @@ public class Home extends AppCompatActivity {
     }
 
     public void swtchRoute(int route, Bundle bundolf){
-        if(bundolf.getSerializable("currentUser") != null) bundolf.remove("currentUser");
-        currentUser.fetchSelf(dbHelper);
-        bundolf.putSerializable("currentUser", currentUser);
+         try {
+             if(bundolf.getSerializable("currentUser") != null) bundolf.remove("currentUser");
+             currentUser.fetchSelf(dbHelper);
+             bundolf.putSerializable("currentUser", currentUser);
+         }catch (Exception e){
+             System.out.println("Fire ERR " + e);
+         }
+
         if(route == 0) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, home_fragment.class, bundolf).commit();
         if(route == 1) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, movie_details.class, bundolf).commit();
         if(route == 2) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, book_fragment.class, bundolf).commit();

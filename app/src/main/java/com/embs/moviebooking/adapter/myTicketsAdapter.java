@@ -37,34 +37,14 @@ public class myTicketsAdapter extends ArrayAdapter<Ticket> {
         TextView time = c.findViewById(R.id.time);
         TextView day = c.findViewById(R.id.day);
         TextView cinemaNo = c.findViewById(R.id.cinemaNo);
-//        int resId = getContext().getResources().getIdentifier(String.format("drawable/%s", movie.getMoviecover()), null, getContext().getPackageName());
-//        TextView title = c.findViewById(R.id.title);
-////        TextView desc = c.findViewById(R.id.desc);
-//        //      TextView cinema = c.findViewById(R.id.cinema);
-//        TextView day = c.findViewById(R.id.day);
-//        TextView time = c.findViewById(R.id.time);
-////        TextView seat = c.findViewById(R.id.seat);
-////        TextView taken = c.findViewById(R.id.taken);
-//        //  TextView genre = c.findViewById(R.id.genre);
-////        TextView duration = c.findViewById(R.id.duration);
-////        TextView cost = c.findViewById(R.id.cost);
-//        img.setImageResource(resId);
 
          mID.setText(ticket.getMovieid());
          time.setText(ticket.getTime());
          day.setText(ticket.getDay());
          cinemaNo.setText(ticket.getCinema());
-//        title.setText(movie.getTitle());
-////        desc.setText(movie.getDescription());
-//        //   cinema.setText(movie.getCinema());
-//        day.setText(movie.getDay());
-//        time.setText(movie.getTime());
-////        seat.setText(movie.getSeats());
-////        taken.setText(movie.getTaken());
-//        //     genre.setText(movie.getGenre());
-////        duration.setText(movie.getDuration());
-////        String cCost =String.valueOf(movie.getCost());
-////        cost.setText(cCost);
+
+         System.out.println("movie ID: "+ticket.getMovieid()+" Time: "+ ticket.getTime());
+
         return c;
     }
 }

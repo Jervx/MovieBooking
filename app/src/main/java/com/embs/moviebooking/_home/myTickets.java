@@ -28,7 +28,7 @@ public class myTickets extends Fragment {
         View v = inflater.inflate(R.layout.my_tickets_fragment, container, false);
         DatabaseHelper d = new DatabaseHelper(v.getContext());
         currentUser = (User) getArguments().get("currentUser");
-        m = new movieAdapter(v.getContext(), Ticket.getAllUserTickets(d, currentUser.getUid()));
+        m = new myTicketsAdapter(v.getContext(), Ticket.getAllUserTickets(d, currentUser.getUid()));
         tickets.setAdapter(m);
         return  v;
     }
