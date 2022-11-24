@@ -41,7 +41,6 @@ public class movie_details extends Fragment {
             // TODO PANO TO?
             getChildFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.movieFrag, book_fragment.class, bundolf).commit();
         });
-
         title.setText( currentMovie.getTitle() );
         desc.setText( currentMovie.getDescription() );
         cost.setText( currentMovie.getCost()+"" );
