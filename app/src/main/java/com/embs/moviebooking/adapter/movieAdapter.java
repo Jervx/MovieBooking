@@ -36,7 +36,7 @@ public class movieAdapter  extends ArrayAdapter<Movie> {
         TextView day = c.findViewById(R.id.day);
         TextView time = c.findViewById(R.id.time);
 //        TextView seat = c.findViewById(R.id.seat);
-//        TextView taken = c.findViewById(R.id.taken);
+//        TextView taken = c.findViewById(R.id.taken);2
       //  TextView genre = c.findViewById(R.id.genre);
 //        TextView duration = c.findViewById(R.id.duration);
 //        TextView cost = c.findViewById(R.id.cost);

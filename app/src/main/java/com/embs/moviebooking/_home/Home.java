@@ -14,7 +14,7 @@ import com.embs.moviebooking.R;
 
 
 public class Home extends AppCompatActivity {
-    ImageView home,book,cinema,setting;
+    ImageView home,book,ticket,setting;
     ImageButton back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         home = findViewById(R.id.homeIcon);
         book = findViewById(R.id.bookIcon);
-        cinema = findViewById(R.id.cinemaIcon);
+        ticket = findViewById(R.id.cinemaIcon);
         back = findViewById(R.id.back);
         setting = findViewById(R.id.settings);
         route();
@@ -43,10 +43,10 @@ public class Home extends AppCompatActivity {
                 swtchRoute(2, null);
             }
         });
-        cinema.setOnClickListener(new View.OnClickListener() {
+        ticket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cinema.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
+                ticket.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
                 swtchRoute(3, null);
             }
         });

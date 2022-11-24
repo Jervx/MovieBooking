@@ -182,7 +182,6 @@ public class Ticket {
 
         return all;
     }
-
     /**Retrieve ang mga all ticket of the specified user desu - jervx
      *
      * @param dbHelper need ko ng instance of DatabaseHelper desu
@@ -203,10 +202,8 @@ public class Ticket {
                 tkts.getString(6),
                 tkts.getString(7)
         ));
-
         return all;
     }
-
     @Override
     public String toString() {
         return "Ticket{" +

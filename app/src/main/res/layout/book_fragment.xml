@@ -34,7 +34,7 @@
             android:layout_marginLeft="-10dp"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:src="@drawable/cinema_curve_final"
+            android:src="@drawable/cinema_screen"
             />
            <LinearLayout
                android:layout_width="match_parent"
@@ -62,6 +62,7 @@
                </GridLayout>
            </LinearLayout>
         <LinearLayout
+            android:paddingLeft="10dp"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"

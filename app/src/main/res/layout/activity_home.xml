@@ -90,17 +90,16 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <ImageView
-                    android:paddingBottom="1dp"
-                    android:paddingHorizontal="15dp"
-                    android:paddingTop="8dp"
                     android:id="@+id/cinemaIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/cinema"
-                    />
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="1dp"
+                    android:src="@drawable/mytickets" />
                 <TextView
-                    android:id="@+id/cinemaText"
-                    android:text="Cinema"
+                    android:id="@+id/myTickets"
+                    android:text="My Tickets"
                     android:textSize="10sp"
                     android:textColor="#A09E9B"
                     android:layout_width="wrap_content"
