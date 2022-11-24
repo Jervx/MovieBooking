@@ -2,7 +2,10 @@ package com.embs.moviebooking.front;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +16,18 @@ import com.embs.moviebooking.login.signup;
 
 public class front extends AppCompatActivity {
     Button log,sign;
+    Dialog success;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front);
         button();
 
+        success = new Dialog(front.this);
+        success.setContentView(R.layout.booked_successfuly);
+        success.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        success.getWindow().getAttributes().windowAnimations = R.style.diagAnim;
+        success.show();
 
     }
 

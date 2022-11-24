@@ -30,19 +30,6 @@
                         tools:listitem="@layout/movie_list"></ListView>
                 </LinearLayout>
     </ScrollView>
-        <LinearLayout
-            android:paddingTop="480dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            >
-            <ImageView
-                android:paddingTop="280dp"
-                android:layout_gravity="bottom"
-                android:id="@+id/imageView5"
-                android:layout_width="match_parent"
-                android:layout_height="600dp"
-                android:src="@drawable/bg_nav" />
-        </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

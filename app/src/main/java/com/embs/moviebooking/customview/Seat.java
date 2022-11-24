@@ -26,8 +26,10 @@ public class Seat extends MaterialButton {
         this.seatnumber = seatnumber;
         int width= 80;
         int heigth= 80;
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(width, heigth);
-        this.setLayoutParams(layoutParams);
+        ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(width,heigth);
+        params.setMargins(0, 0, 15, 0);
+        this.setLayoutParams(params);
+
     }
 
     public boolean isSelectedSeat(){
@@ -48,7 +50,6 @@ public class Seat extends MaterialButton {
             this.setBackgroundColor(getContext().getResources().getColor(R.color.unavailable));
         else if(selected)
             this.setBackgroundColor(getContext().getResources().getColor(R.color.yellow));
-
         if(!taken && !selected)
             this.setBackgroundColor(getContext().getResources().getColor(R.color.available));
     }

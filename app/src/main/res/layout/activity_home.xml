@@ -13,17 +13,17 @@
     <LinearLayout
         android:id="@+id/buttonBar"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_height="200dp"
         android:layout_alignParentBottom="true"
-        android:paddingTop="63dp"
-
+        android:background="@drawable/bg_nav"
         android:gravity="center"
         >
         <LinearLayout
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="65dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+
             >
             <LinearLayout
                 android:layout_marginTop="10dp"

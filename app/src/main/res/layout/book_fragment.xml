@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#C4121212"
+        android:background="#DF121212"
         android:orientation="vertical">
         <LinearLayout
             android:layout_marginTop="15dp"
@@ -33,11 +33,10 @@
         <ImageView
             android:layout_marginLeft="-10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/curve_final"
+            android:layout_height="150dp"
+            android:src="@drawable/cinema_curve_final"
             />
            <LinearLayout
-
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_marginHorizontal="30dp"
@@ -46,6 +45,7 @@
                >
                <GridLayout
                    android:id="@+id/left"
+                   android:layout_marginEnd="10dp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginRight="20dp"
@@ -143,7 +143,8 @@
                          style="@style/imageStyle"
                          android:layout_width="110dp"
                          android:layout_height="170dp"
-                         android:src="@drawable/mvc_encnto" />
+                         android:src="@drawable/ic_launcher_foreground"
+                       />
                  </androidx.cardview.widget.CardView>
 
                  <GridLayout
@@ -157,28 +158,26 @@
                      <TextView
                          android:id="@+id/titletxtv"
                          android:fontFamily="@font/muli_bold"
-                         android:text="Encanto"
+                         android:text="None"
                          android:textColor="#fff"
                          android:textSize="15sp" />
-                     <TextView  android:text="Description:" style="@style/gridLable" />
+                     <TextView  android:text="genre:" style="@style/gridLable" />
 
                      <TextView
-                         android:id="@+id/desctxtv"
-                         android:text=" sdsg sdg sd gsd gsd gsd gsd gsdgs ds asfas fsa fsa fasf as fa" />
+                         android:id="@+id/generetxtv"
+                         android:text="None"/>
                      <TextView  android:text="Cinema no:" style="@style/gridLable"  />
-                     <TextView  android:id="@+id/cinemaNo" android:text="2" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#EDECE9" />
+                     <TextView  android:id="@+id/cinemaNo" android:text="0" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#EDECE9" />
                      <TextView  android:text="Available seats:" style="@style/gridLable" />
-                     <TextView android:id="@+id/availableSeat"  android:text="2" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#41C889" />
+                     <TextView android:id="@+id/availableSeat"  android:text="0" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#41C889" />
                      <TextView  android:text="Taken Seats:" style="@style/gridLable"/>
-                     <TextView  android:id="@+id/takenSeat" android:text="2" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#D8495A" />
+                     <TextView  android:id="@+id/takenSeat" android:text="0" android:textSize="15sp" android:fontFamily="@font/muli_bold" android:textColor="#D8495A" />
                  </GridLayout>
-
 
              </LinearLayout>
             <LinearLayout
-                android:layout_marginTop="-20dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 >
                 <LinearLayout
@@ -195,7 +194,6 @@
                         android:textAlignment="center"
                         android:text="Total Price"
                         />
-
                     <TextView
                         android:id="@+id/total"
                         android:layout_width="wrap_content"
@@ -217,8 +215,14 @@
                     android:fontFamily="@font/muli_bold"
                     android:text="Book Ticket"
                     android:textAllCaps="false"
-                    android:textColor="#3E3D3D"></Button>
+                    android:textColor="#3E3D3D"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

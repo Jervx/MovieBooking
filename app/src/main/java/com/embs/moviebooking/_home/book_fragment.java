@@ -31,7 +31,7 @@ import java.util.Date;
 public class book_fragment extends Fragment {
 
     private GridLayout left, right;
-    private TextView titletxtv, desctxtv, cinemaNo, availableSeat, tekenSeat, total;
+    private TextView titletxtv, genretxtv, cinemaNo, availableSeat, tekenSeat, total;
     private ImageView moviebanner;
     private Button bookbtn;
 
@@ -64,7 +64,7 @@ public class book_fragment extends Fragment {
         left = v.findViewById(R.id.left);
         right = v.findViewById(R.id.right);
         titletxtv = v.findViewById(R.id.titletxtv);
-        desctxtv = v.findViewById(R.id.desctxtv);
+        genretxtv = v.findViewById(R.id.generetxtv);
         cinemaNo = v.findViewById(R.id.cinemaNo);
         availableSeat = v.findViewById(R.id.availableSeat);
         tekenSeat = v.findViewById(R.id.takenSeat);
@@ -78,6 +78,8 @@ public class book_fragment extends Fragment {
 
         if(currentMovie == null){
             Toast.makeText(getContext(), "You haven't selected a movie", Toast.LENGTH_LONG).show();
+            bookbtn.setTextSize(12);
+            total.setTextSize(12);
             bookbtn.setText("No Chosen Movie");
             total.setText("No Chosen Movie");
             bookbtn.setClickable(false);
@@ -165,7 +167,7 @@ public class book_fragment extends Fragment {
 
     void renderMovieInfo(){
         titletxtv.setText(currentMovie.getTitle());
-        desctxtv.setText(currentMovie.getDescription());
+        genretxtv.setText(currentMovie.getGenre());
         cinemaNo.setText(currentMovie.getCinema());
         availableSeat.setText(currentMovie.getSeats().length() > 0 ? currentMovie.getSeats().split(",").length+"" : "0");
         tekenSeat.setText((seatsleft.length + seatsright.length - (currentMovie.getSeats().length() > 0 ? currentMovie.getSeats().split(",").length  : 0)) + "");
