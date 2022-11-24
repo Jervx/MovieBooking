@@ -120,9 +120,8 @@ public class book_fragment extends Fragment {
 
         ((TextView) success.findViewById(R.id.clickEmail)).setOnClickListener(JohnySinsei->{
             Toast.makeText(getContext(), "Waiting for My Tickets Fragment", Toast.LENGTH_LONG).show();
-//            TODO after my ticket fragment created
-//            Home parent = (Home) getActivity();
-//            parent.swtchRoute();
+            Home parent = (Home) getActivity();
+            parent.swtchRoute(5, getArguments());
         });
 
         ((Button) success.findViewById(R.id.done)).setOnClickListener(JohnySinsei->{
