@@ -91,21 +91,19 @@ public class book_fragment extends Fragment {
     }
 
     void placeBook(){
-        // TODO UNCOMENT FOLLOWING
-//        currentMovie.saveState(dbHelper);
         for(Seat st : Chosen) {
             Ticket tkinstance = new Ticket(0, currentMovie.getUid(), st.getSeatnumber(), currentMovie.getDay(), currentMovie.getTime(), currentMovie.getCinema(), Helper.toISODateString(new Date()));
             currentMovie.takeSeat(st.getSeatnumber());
-//            tkinstance.saveState(getContext(), dbHelper, true);
+            tkinstance.saveState(getContext(), dbHelper, true);
         }
 
-        Toast.makeText(getContext(), Chosen.size() + " Tickets to your account", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Generated " + Chosen.size() + " tickets to your account", Toast.LENGTH_LONG).show();
 
         totalCost = 0;
         Chosen = new ArrayList<>();
         seatLeft = new ArrayList<>();
         seatRight = new ArrayList<>();
-//        currentMovie.saveState();
+        currentMovie.saveState(getContext(), dbHelper, false);
         genSeat();
         render();
         renderMovieInfo();

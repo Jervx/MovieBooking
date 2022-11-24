@@ -221,16 +221,17 @@ public class Movie implements Serializable {
             Cursor cur = dbHelper.execRawQuery(String.format("SELECT * FROM movie WHERE uid=%d;", uid), null);
             if (cur == null || cur.getCount() == 0 || !cur.moveToNext()) return;
             setUid(cur.getInt(0));
-            setTitle(cur.getString(1));
-            setDescription(cur.getString(2));
-            setCinema(cur.getString(3));
-            setDay(cur.getString(4));
-            setTime(cur.getString(5));
-            setSeats(cur.getString(6));
-            setTaken(cur.getString(7));
-            setGenre(cur.getString(8));
-            setDuration(cur.getString(9));
-            setCost(cur.getFloat(10));
+            setMoviecover(cur.getString(1));
+            setTitle(cur.getString(2));
+            setDescription(cur.getString(3));
+            setCinema(cur.getString(4));
+            setDay(cur.getString(5));
+            setTime(cur.getString(6));
+            setSeats(cur.getString(7));
+            setTaken(cur.getString(8));
+            setGenre(cur.getString(9));
+            setDuration(cur.getString(10));
+            setCost(cur.getFloat(11));
         }catch(Exception e){
             System.out.println("ERR ON FETCH " + e);
         }

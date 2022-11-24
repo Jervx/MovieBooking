@@ -41,8 +41,8 @@ public class home_fragment extends Fragment {
                 Bundle bundle = new Bundle();
                 Movie foc = Movie.getAllMovies(d).get(i);
                 bundle.putSerializable("currentMovie", foc);
-                getChildFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.movieFrag, movie_details.class, bundle).commit();
-                scroll.setVisibility(View.GONE);
+                Home parent = (Home) getActivity();
+                parent.swtchRoute(1, bundle);
             }
         });
 

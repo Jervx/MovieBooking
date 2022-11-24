@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.embs.moviebooking.R;
 import com.embs.moviebooking._models.Movie;
+import com.embs.moviebooking._utils.DatabaseHelper;
 
 
 public class movie_details extends Fragment {
@@ -26,6 +27,8 @@ public class movie_details extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_movie_details, container, false);
+        DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+
         title = v.findViewById(R.id.title);
         desc = v.findViewById(R.id.desc);
         genre = v.findViewById(R.id.genre);
@@ -36,10 +39,11 @@ public class movie_details extends Fragment {
 
         Bundle bundolf = this.getArguments();
         Movie currentMovie = (Movie) bundolf.getSerializable("currentMovie");
+        currentMovie.fetchSelf(dbHelper);
 
         get.setOnClickListener(JohnySinsei -> {
-            // TODO PANO TO?
-            getChildFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.movieFrag, book_fragment.class, bundolf).commit();
+            Home parent = (Home) getActivity();
+            parent.swtchRoute(2, bundolf);
         });
         title.setText( currentMovie.getTitle() );
         desc.setText( currentMovie.getDescription() );
