@@ -1,10 +1,14 @@
 package com.embs.moviebooking._home;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.embs.moviebooking.R;
 
@@ -62,6 +66,20 @@ public class Home extends AppCompatActivity {
             }
         });
 
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            if (resultCode == RESULT_OK && requestCode == 1000) {
+                Toast.makeText(this, "Photo Selected", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(this, "Select Photo Cancelled", Toast.LENGTH_SHORT).show();
+                System.out.println("CANCELLED ");
+            }
+        } catch (Exception e) {
+            System.out.println("Fire ERR " + e);
+        }
     }
 
     public void swtchRoute(int route, Bundle bundolf){
