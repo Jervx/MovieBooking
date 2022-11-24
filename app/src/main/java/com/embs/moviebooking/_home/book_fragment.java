@@ -1,5 +1,8 @@
 package com.embs.moviebooking._home;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +25,7 @@ import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
 import com.embs.moviebooking.customview.Seat;
+import com.embs.moviebooking.front.front;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -105,7 +109,26 @@ public class book_fragment extends Fragment {
         Chosen = new ArrayList<>();
         seatLeft = new ArrayList<>();
         seatRight = new ArrayList<>();
+
         currentMovie.saveState(getContext(), dbHelper, false);
+
+        Dialog success = new Dialog(getContext());
+        success.setContentView(R.layout.booked_successfuly);
+        success.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        success.getWindow().getAttributes().windowAnimations = R.style.diagAnim;
+        success.show();
+
+        ((TextView) success.findViewById(R.id.clickEmail)).setOnClickListener(JohnySinsei->{
+            Toast.makeText(getContext(), "Waiting for My Tickets Fragment", Toast.LENGTH_LONG).show();
+//            TODO after my ticket fragment created
+//            Home parent = (Home) getActivity();
+//            parent.swtchRoute();
+        });
+
+        ((Button) success.findViewById(R.id.done)).setOnClickListener(JohnySinsei->{
+            success.dismiss();
+        });
+
         genSeat();
         render();
         renderMovieInfo();

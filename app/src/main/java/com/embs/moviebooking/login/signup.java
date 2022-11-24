@@ -22,7 +22,6 @@ import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
 import com.embs.moviebooking._utils.JavaMailAPI;
-import com.embs.moviebooking.front.front;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class signup extends AppCompatActivity {
@@ -91,7 +90,7 @@ public class signup extends AppCompatActivity {
         verify.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         verify.getWindow().getAttributes().windowAnimations = R.style.diagAnim;
         code =  verify.findViewById(R.id.code);
-        verifyCode = verify.findViewById(R.id.verify);
+        verifyCode = verify.findViewById(R.id.done);
         emailName = verify.findViewById(R.id.clickEmail);
         emailName.setText(email.getText().toString());
         closeVeriDialog = verify.findViewById(R.id.closeV);

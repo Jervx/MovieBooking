@@ -16,19 +16,11 @@ import com.embs.moviebooking.login.signup;
 
 public class front extends AppCompatActivity {
     Button log,sign;
-    Dialog success;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front);
         button();
-
-        success = new Dialog(front.this);
-        success.setContentView(R.layout.booked_successfuly);
-        success.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        success.getWindow().getAttributes().windowAnimations = R.style.diagAnim;
-        success.show();
-
     }
 
     public void button(){
