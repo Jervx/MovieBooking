@@ -117,7 +117,6 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:text="Edit Username &amp; Password"
-                   android:text="Edit Username and Password"
                    android:textColor="#fff"
                    android:textSize="13sp"
                    android:fontFamily="@font/poppins"
@@ -199,15 +198,16 @@
                    android:textColor="#419CED"
                    android:fontFamily="@font/poppins"
                    />
+
                <TextView
-                   android:padding="15dp"
+                   android:id="@+id/logout"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
+                   android:fontFamily="@font/poppins"
+                   android:padding="15dp"
                    android:text="Log out"
                    android:textColor="#EDA842"
-                   android:fontFamily="@font/poppins"
-                   android:textSize="15sp"
-                   />
+                   android:textSize="15sp" />
            </LinearLayout>
 
 

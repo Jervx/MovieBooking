@@ -25,15 +25,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-        dbHelper.dropDbs(new String[] {"movie", "ticket"});
+        dbHelper.dropDbs(new String[] {"movie", "ticket", "user"});
         dbHelper.checkTableExist();
-        dbHelper.truncateDbs(new String[] {"movie"});
-        dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
-
-        if(!dummyUser.checkIfAlreadyExist(dbHelper)){
-            dummyUser.setState(0);
-            dummyUser.saveState(getApplicationContext(), dbHelper, true);
-        }
+//        dbHelper.truncateDbs(new String[] {"movie"});
+//        dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
+//
+//        if(!dummyUser.checkIfAlreadyExist(dbHelper)){
+//            dummyUser.setState(0);
+//            dummyUser.saveState(getApplicationContext(), dbHelper, true);
+//        }
 
         Movie [] mv = new Movie[] {
                 new Movie("mvc_jwkchpt2", "John Wick: Chapter 2", "Retired super-assassin John Wick's plans to resume a quiet civilian life are cut short when Italian gangster Santino D'Antonio shows up on his doorstep with a gold marker, compelling him to repay past favours. Ordered by Winston, the kingpin of secret assassin society The Continental, to respect the organisation's ancient code, Wick reluctantly accepts the assignment to travel to Rome to take out D'Antonio's sister, the ruthless capo atop the Italian Camorra crime syndicate.", "Cinema 1", "Dec 1, 2022", "10:30 AM", Helper.seatGenerator(1, 32), "", "Action", "2h 2m", 149),
@@ -67,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     hasLoggedIn.moveToNext();
                     dummyUser = new User(hasLoggedIn.getString(2));
-                    System.out.println("USER DESU");
-                    System.out.println(dummyUser.toString());
                     dummyUser.fetchSelf(dbHelper);
 
                     Intent homeIntent = new Intent(getApplicationContext(), Home.class);

@@ -1,11 +1,14 @@
 package com.embs.moviebooking._home;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -21,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.embs.moviebooking.MainActivity;
 import com.embs.moviebooking.R;
 import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
@@ -72,6 +76,28 @@ public class settings extends Fragment {
 
         savebtn.setOnClickListener(JohnySensei -> {
             saveChange();
+        });
+
+        ((TextView) v.findViewById(R.id.logout)).setOnClickListener(JohnySinsei->{
+            Dialog logoutconf = new Dialog(getContext());
+            logoutconf.setContentView(R.layout.logout_dialog);
+            logoutconf.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            logoutconf.getWindow().getAttributes().windowAnimations = R.style.diagAnim;
+            logoutconf.show();
+
+            ((Button) logoutconf.findViewById(R.id.yes)).setOnClickListener(JohnySinsei2 -> {
+                currentUser.setState(0);
+                currentUser.saveState(getContext(), dbHelper, false);
+                Intent MAIN = new Intent(getContext(), MainActivity.class);
+                startActivity(MAIN);
+                getActivity().finish();
+                System.exit(0);
+                logoutconf.dismiss();
+            });
+
+            ((Button) logoutconf.findViewById(R.id.no)).setOnClickListener(JohnySinsei2 -> {
+                logoutconf.dismiss();
+            });
         });
 
         render();
