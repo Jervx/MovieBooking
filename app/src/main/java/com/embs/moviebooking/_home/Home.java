@@ -53,7 +53,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ticket.startAnimation(AnimationUtils.loadAnimation(Home.this, R.anim.anim_item));
-                swtchRoute(3, null);
+                swtchRoute(5, null);
             }
         });
         setting.setOnClickListener(new View.OnClickListener() {
@@ -93,10 +93,12 @@ public class Home extends AppCompatActivity {
              if(bundolf.containsKey("currentUser")) bundolf.remove("currentUser");
              currentUser.fetchSelf(dbHelper);
              bundolf.putSerializable("currentUser", currentUser);
+             System.out.println("PASSED BUNDOLF A "+ currentUser.toString());
          }catch (Exception e){
              System.out.println("Fire ERR " + e);
              bundolf = new Bundle();
              bundolf.putSerializable("currentUser", currentUser);
+             System.out.println("PASSED BUNDOLF B "+ currentUser.toString());
          }
         if(route == 0) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, home_fragment.class, bundolf).commit();
         if(route == 1) getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragmentContainer, movie_details.class, bundolf).commit();

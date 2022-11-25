@@ -29,6 +29,7 @@ public class myTickets extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.my_tickets_fragment, container, false);
+        System.out.println("INFLATED : ");
         DatabaseHelper d = new DatabaseHelper(v.getContext());
         currentUser = (User) getArguments().getSerializable("currentUser");
         System.out.println("CURRE USER TICKET: " + currentUser.toString());
