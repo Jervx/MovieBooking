@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="._home.home_fragment">
-
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -22,7 +21,7 @@
            android:orientation="vertical"
            >
            <LinearLayout
-               android:layout_marginTop="50dp"
+               android:layout_marginTop="20dp"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:gravity="center"
@@ -57,7 +56,6 @@
 
                </LinearLayout>
            </LinearLayout>
-
            <LinearLayout
                android:paddingLeft="20dp"
                android:layout_width="match_parent"
@@ -108,20 +106,72 @@
                    />
            </LinearLayout>
            <LinearLayout
+               android:paddingLeft="20dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               >
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Edit Username & Password"
+                   android:textColor="#fff"
+                   android:textSize="13sp"
+                   android:fontFamily="@font/poppins"
+                   />
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardCornerRadius="200dp"
+               android:layout_margin="15dp"
+               android:background="@drawable/label_box"
+               >
+                <EditText
+                    android:padding="10dp"
+                    android:background="@null"
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/person"
+                    android:drawablePadding="10dp"
+                    android:textSize="12dp"
+                    app:textInputLayoutFocusedRectEnabled="false"
+                    android:hint="username"
+                    />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardCornerRadius="200dp"
+               android:layout_margin="15dp"
+               android:background="@drawable/label_box"
+               >
+               <EditText
+                   android:padding="10dp"
+                   android:background="@null"
+                   android:id="@+id/password"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:drawableLeft="@drawable/password"
+                   android:drawablePadding="10dp"
+                   android:textSize="12dp"
+                   app:textInputLayoutFocusedRectEnabled="false"
+                   android:hint="password"
+                   />
+           </LinearLayout>
+           <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                app:cardCornerRadius="200dp"
                android:gravity="center"
-               android:layout_margin="15dp"
                >
                <Button
-
-
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:textAllCaps="false"
                    app:cornerRadius="20dp"
-                   android:text="my Tickets"
+                   android:text="save"
                    style="@style/myButton"
                    android:textColor="#000"
                    android:fontFamily="@font/poppins"
