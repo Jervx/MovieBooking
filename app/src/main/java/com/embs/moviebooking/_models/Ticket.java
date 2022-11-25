@@ -144,7 +144,7 @@ public class Ticket {
 
     public void fetchSelf(DatabaseHelper dbHelper){
         try{
-            Cursor cur = dbHelper.execRawQuery(String.format("SELECT * FROM ticket WHERE uid=%d;", uid), null);
+            Cursor cur = dbHelper.execRawQuery(String.format("SELECT * FROM ticket WHERE brcode=%d;", getBrcode()), null);
             if (cur == null || cur.getCount() == 0 || !cur.moveToNext()) return;
             setUid(cur.getInt(0));
             setUserid(cur.getInt(1));
