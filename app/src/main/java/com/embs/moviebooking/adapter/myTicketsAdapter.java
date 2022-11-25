@@ -35,15 +35,29 @@ public class myTicketsAdapter extends ArrayAdapter<Ticket> {
         if(c == null){
             c = LayoutInflater.from(getContext()).inflate(R.layout.ticket_list,parent,false);
         }
-        TextView mID = c.findViewById(R.id.movieId);
+        TextView userID = c.findViewById(R.id.userID);
+        TextView seat = c.findViewById(R.id.seat);
+        TextView purDate = c.findViewById(R.id.purDate);
+        TextView movieID = c.findViewById(R.id.movieID);
+        TextView title = c.findViewById(R.id.title);
         TextView time = c.findViewById(R.id.time);
         TextView day = c.findViewById(R.id.day);
-        TextView cinemaNo = c.findViewById(R.id.cinema);
+        TextView cinemaNo = c.findViewById(R.id.cinemaNo);
+        ImageView movieCover = c.findViewById(R.id.mCover);
+        ImageView barcode = c.findViewById(R.id.barcode);
 
-         mID.setText(ticket.getMovieid()+"");
+        userID.setText(Integer.toString(ticket.getUserid()));
+         movieID.setText(Integer.toString(ticket.getMovieid()));
+         seat.setText(Integer.toString(ticket.getSeatnumber()));
+         purDate.setText(ticket.getPurchaseddate());
+         title.setText(tcktmv.getTitle());
          time.setText(ticket.getTime());
          day.setText(ticket.getDay());
          cinemaNo.setText(ticket.getCinema());
+        int mCover = getContext().getResources().getIdentifier(String.format("drawable/%s", tcktmv.getMoviecover()), null, getContext().getPackageName());
+         movieCover.setImageResource(mCover);
+//        int brcode = getContext().getResources().getIdentifier(String.format("drawable/%s", ticket.getBrcdBitmap()), null, getContext().getPackageName());
+        barcode.setImageBitmap(ticket.getBrcdBitmap());
 
         return c;
     }

@@ -46,6 +46,7 @@
 <!--                    />-->
             </LinearLayout>
             <ListView
+                android:padding="20dp"
                 android:id="@+id/ticketList"
                 android:layout_width="match_parent"
                 android:layout_height="5200dp"
