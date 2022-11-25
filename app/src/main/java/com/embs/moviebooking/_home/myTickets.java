@@ -30,7 +30,8 @@ public class myTickets extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.my_tickets_fragment, container, false);
         DatabaseHelper d = new DatabaseHelper(v.getContext());
-        currentUser = (User) getArguments().get("currentUser");
+        currentUser = (User) getArguments().getSerializable("currentUser");
+        System.out.println("CURRE USER TICKET: " + currentUser.toString());
         tickets = v.findViewById(R.id.ticketList);
         label = v.findViewById(R.id.ticketLable);
 
