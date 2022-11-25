@@ -33,7 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:paddingStart="50dp"
+        android:paddingStart="40dp"
+        android:layout_marginBottom="10dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -43,103 +44,98 @@
             android:textColor="#eeeeef"
             android:textSize="15dp" />
     </RelativeLayout>
-
-    <RelativeLayout
+    <LinearLayout
+        android:paddingHorizontal="33dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
+        android:orientation="vertical"
         >
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardCornerRadius="200dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/sign_box"
             >
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
+                android:padding="10dp"
+                android:background="@null"
                 android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="match_parent"
                 android:drawableLeft="@drawable/email"
                 android:drawablePadding="10dp"
                 android:textSize="12dp"
-                android:background="@drawable/box"
                 app:textInputLayoutFocusedRectEnabled="false"
-                android:hint="email" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        >
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
+                android:hint="email"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardCornerRadius="200dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/sign_box"
             >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/username"
+            <EditText
+                android:padding="10dp"
+                android:background="@null"
+                android:id="@+id/user"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="match_parent"
                 android:drawableLeft="@drawable/person"
                 android:drawablePadding="10dp"
                 android:textSize="12dp"
-                android:background="@drawable/box"
                 app:textInputLayoutFocusedRectEnabled="false"
-                android:hint="username" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </RelativeLayout>
+                android:hint="username"
+                />
+        </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        >
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
+            app:cardCornerRadius="200dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/sign_box"
             >
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
+                android:padding="10dp"
+                android:background="@null"
                 android:id="@+id/pass"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:textSize="12dp"
-                android:textColor="@color/white"
-                android:textColorHighlight="@color/white"
-                android:textColorHint="@color/white"
-                android:drawableStart="@drawable/password"
-                android:background="@drawable/box"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/password"
                 android:drawablePadding="10dp"
+                android:textSize="12dp"
                 android:inputType="textPassword"
+                app:textInputLayoutFocusedRectEnabled="false"
                 android:hint="password"
-
                 />
-        </com.google.android.material.textfield.TextInputLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        >
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
-            app:passwordToggleEnabled="true"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardCornerRadius="200dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/sign_box"
             >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/confirm_pass"
+            <EditText
+                android:padding="10dp"
+                android:background="@null"
+                android:id="@+id/con_pass"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:drawableStart="@drawable/check"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/con_pass"
                 android:drawablePadding="10dp"
                 android:textSize="12dp"
-                android:background="@drawable/box"
+                android:inputType="textPassword"
                 app:textInputLayoutFocusedRectEnabled="false"
-                android:hint="confirm password" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </RelativeLayout>
+                android:hint="confirm password"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
