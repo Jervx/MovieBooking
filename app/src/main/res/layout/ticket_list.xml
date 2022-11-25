@@ -131,11 +131,27 @@
                android:layout_marginTop="40dp"
                android:fontFamily="@font/poppins"
                android:text="Jan 10"
-               android:textAlignment="textStart"
+               android:textAlignment="center"
                android:textColor="#000"
                android:textSize="11sp"
                app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.04"
+               app:layout_constraintHorizontal_bias="0.032"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
+
+           <TextView
+               android:id="@+id/day9"
+               android:layout_width="63dp"
+               android:layout_height="14dp"
+               android:layout_marginStart="5dp"
+               android:layout_marginTop="56dp"
+               android:fontFamily="@font/poppins"
+               android:text="user ID"
+               android:textAlignment="center"
+               android:textColor="#000"
+               android:textSize="8sp"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.032"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent" />
 
@@ -147,41 +163,25 @@
                android:layout_marginTop="104dp"
                android:fontFamily="@font/poppins"
                android:text="Bar Code"
-               android:textAlignment="textStart"
+               android:textAlignment="center"
                android:textColor="#000"
                android:textSize="8sp"
                app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.04"
+               app:layout_constraintHorizontal_bias="0.032"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent" />
 
            <ImageView
                android:id="@+id/barcode"
-               android:layout_width="64dp"
-               android:layout_height="31dp"
+               android:layout_width="58dp"
+               android:layout_height="36dp"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.051"
+               app:layout_constraintHorizontal_bias="0.059"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintVertical_bias="0.797"
+               app:layout_constraintVertical_bias="0.809"
                app:srcCompat="@drawable/blue" />
-
-           <TextView
-               android:id="@+id/day9"
-               android:layout_width="63dp"
-               android:layout_height="14dp"
-               android:layout_marginStart="5dp"
-               android:layout_marginTop="56dp"
-               android:fontFamily="@font/poppins"
-               android:text="user ID:"
-               android:textAlignment="textStart"
-               android:textColor="#000"
-               android:textSize="8sp"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.04"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
 
            <TextView
                android:id="@+id/purDate"

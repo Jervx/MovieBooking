@@ -44,7 +44,8 @@ public class myTicketsAdapter extends ArrayAdapter<Ticket> {
         TextView day = c.findViewById(R.id.day);
         TextView cinemaNo = c.findViewById(R.id.cinemaNo);
         ImageView movieCover = c.findViewById(R.id.mCover);
-//         movieID.setText(ticket.getMovieid());
+        ImageView barcode = c.findViewById(R.id.barcode);
+
         userID.setText(Integer.toString(ticket.getUserid()));
          movieID.setText(Integer.toString(ticket.getMovieid()));
          seat.setText(Integer.toString(ticket.getSeatnumber()));
@@ -55,6 +56,9 @@ public class myTicketsAdapter extends ArrayAdapter<Ticket> {
          cinemaNo.setText(ticket.getCinema());
         int mCover = getContext().getResources().getIdentifier(String.format("drawable/%s", tcktmv.getMoviecover()), null, getContext().getPackageName());
          movieCover.setImageResource(mCover);
+//        int brcode = getContext().getResources().getIdentifier(String.format("drawable/%s", ticket.getBrcdBitmap()), null, getContext().getPackageName());
+        barcode.setImageBitmap(ticket.getBrcdBitmap());
+
         return c;
     }
 }
