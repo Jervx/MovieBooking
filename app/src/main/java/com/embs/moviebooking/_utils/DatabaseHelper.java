@@ -50,6 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             result = this.getWritableDatabase().rawQuery(query, args);
         } catch (Exception e) {
+            System.out.println("ERRR RAW Q : "+e);
             return null;
         }
         return result;

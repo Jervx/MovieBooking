@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.embs.moviebooking.R;
 import com.embs.moviebooking._models.Movie;
 import com.embs.moviebooking._models.Ticket;
+import com.embs.moviebooking._utils.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,23 +22,25 @@ import java.util.List;
 public class myTicketsAdapter extends ArrayAdapter<Ticket> {
     static Ticket ticket;
 
-//    int uid, userid, movieid, seatnumber;
-//    String day, time, cinema, purchaseddate, brcode ;
 
     public myTicketsAdapter(Context context, ArrayList<Ticket> mList){
         super(context, R.layout.ticket_list,mList);
     }
     public View getView(int position, @Nullable View c, @NonNull ViewGroup parent) {
+        DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+
         ticket = getItem(position);
+        Movie tcktmv = ticket.getMatchedMovie(dbHelper);
+
         if(c == null){
             c = LayoutInflater.from(getContext()).inflate(R.layout.ticket_list,parent,false);
         }
         TextView mID = c.findViewById(R.id.movieId);
         TextView time = c.findViewById(R.id.time);
         TextView day = c.findViewById(R.id.day);
-        TextView cinemaNo = c.findViewById(R.id.cinemaNo);
+        TextView cinemaNo = c.findViewById(R.id.cinema);
 
-         mID.setText(ticket.getMovieid());
+         mID.setText(ticket.getMovieid()+"");
          time.setText(ticket.getTime());
          day.setText(ticket.getDay());
          cinemaNo.setText(ticket.getCinema());

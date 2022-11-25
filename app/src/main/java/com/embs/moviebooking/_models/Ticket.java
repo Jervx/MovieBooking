@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.embs.moviebooking._utils.DatabaseHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Ticket {
     int uid, userid, movieid, seatnumber;
@@ -24,6 +25,7 @@ public class Ticket {
         this.purchaseddate = purchaseddate;
         this.brcode = brcode;
     }
+
     public Ticket(int userid, int movieid, int seatnumber, String day, String time, String cinema, String purchaseddate, String brcode) {
         this.userid = userid;
         this.movieid = movieid;
@@ -34,6 +36,7 @@ public class Ticket {
         this.purchaseddate = purchaseddate;
         this.brcode = brcode;
     }
+
     public int getUid() {
         return uid;
     }
@@ -119,6 +122,12 @@ public class Ticket {
         return vals;
     }
 
+    public Movie getMatchedMovie(DatabaseHelper dbHelper){
+        Movie mv = new Movie(movieid);
+        mv.fetchSelf(dbHelper);
+        return mv;
+    }
+
     public boolean saveState(Context context, DatabaseHelper dbHelper, boolean isNew){
         if(isNew){
             if(dbHelper.insert(getSelfContentValues(), "ticket")){
@@ -144,15 +153,17 @@ public class Ticket {
         try{
             System.out.println("Before " + toString());
 
-            Cursor cur = dbHelper.execRawQuery(String.format("SELECT * FROM ticket WHERE brcode='%s';", getBrcode()), null);
+            Cursor cur = dbHelper.execRawQuery(String.format("SELECT uid, userid, movieid, seatnumber, day, time, cinema, purchaseddate, brcode from ticket WHERE brcode='%s';", getBrcode()), null);
+            String[] columnNames = cur.getColumnNames();
+            System.out.println("DEEP | " + Arrays.deepToString(columnNames));
             if (cur == null || cur.getCount() == 0 || !cur.moveToNext()) return;
             setUid(cur.getInt(0));
             setUserid(cur.getInt(1));
             setMovieid(cur.getInt(2));
-            setDay(cur.getString(3));
-            setTime(cur.getString(4));
-            setCinema(cur.getString(5));
-            setSeatnumber(cur.getInt(6));
+            setSeatnumber(cur.getInt(3));
+            setDay(cur.getString(4));
+            setTime(cur.getString(5));
+            setCinema(cur.getString(6));
             setPurchaseddate(cur.getString(7));
             setBrcode(cur.getString(8));
 
@@ -170,16 +181,17 @@ public class Ticket {
     public static ArrayList<Ticket> getAllTickets(DatabaseHelper dbHelper){
         ArrayList <Ticket> all = new ArrayList<>();
 
-        Cursor tkts = dbHelper.execRawQuery("SELECT * FROM ticket", null);
+        Cursor tkts = dbHelper.execRawQuery("SELECT uid, userid, movieid, seatnumber, day, time, cinema, purchaseddate, brcode FROM ticket", null);
         while(tkts.moveToNext()) all.add(new Ticket(
                 tkts.getInt(0),
                 tkts.getInt(1),
                 tkts.getInt(2),
-                tkts.getString(3),
+                tkts.getInt(3),
                 tkts.getString(4),
                 tkts.getString(5),
                 tkts.getString(6),
-                tkts.getString(7)
+                tkts.getString(7),
+                tkts.getString(8)
         ));
 
         return all;
@@ -193,18 +205,7 @@ public class Ticket {
     public static ArrayList<Ticket> getAllUserTickets(DatabaseHelper dbHelper, int uid){
         ArrayList <Ticket> all = new ArrayList<>();
         System.out.println("CURRENT USER ID "+uid);
-        Cursor tkts = dbHelper.execRawQuery(String.format("SELECT * FROM ticket where userid='%d'", uid), null);
-        Cursor tkts2 = dbHelper.execRawQuery(String.format("SELECT * FROM ticket", uid), null);
-        while(tkts2.moveToNext()) System.out.println(new Ticket(
-                tkts2.getInt(0),
-                tkts2.getInt(1),
-                tkts2.getInt(2),
-                tkts2.getString(3),
-                tkts2.getString(4),
-                tkts2.getString(5),
-                tkts2.getString(6),
-                tkts2.getString(7)
-        ).toString());
+        Cursor tkts = dbHelper.execRawQuery(String.format("SELECT uid, userid, movieid, seatnumber, day, time, cinema, purchaseddate, brcode FROM ticket where userid='%d'", uid), null);
 
         System.out.println("COUNT RETRIEVED  "+ tkts.getCount());
         while(tkts.moveToNext()) {
@@ -212,11 +213,12 @@ public class Ticket {
                     tkts.getInt(0),
                     tkts.getInt(1),
                     tkts.getInt(2),
-                    tkts.getString(3),
+                    tkts.getInt(3),
                     tkts.getString(4),
                     tkts.getString(5),
                     tkts.getString(6),
-                    tkts.getString(7)
+                    tkts.getString(7),
+                    tkts.getString(8)
             );
             all.add(newtk);
         }
