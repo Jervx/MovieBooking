@@ -43,7 +43,7 @@ public class signup extends AppCompatActivity {
         email = findViewById(R.id.email);
         username = findViewById(R.id.usernameeditable);
         pass = findViewById(R.id.pass);
-        confirm_pass = findViewById(R.id.confirm_pass);
+        confirm_pass = findViewById(R.id.con_pass);
         btnlogin = findViewById(R.id.btnlogin);
         btnlogin.setOnClickListener(JohnySensei -> {
             String _email = email.getText().toString(),

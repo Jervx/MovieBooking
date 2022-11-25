@@ -117,6 +117,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:text="Edit Username &amp; Password"
+                   android:text="Edit Username and Password"
                    android:textColor="#fff"
                    android:textSize="13sp"
                    android:fontFamily="@font/poppins"
