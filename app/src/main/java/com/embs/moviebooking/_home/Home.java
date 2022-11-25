@@ -90,7 +90,7 @@ public class Home extends AppCompatActivity {
 
     public void swtchRoute(int route, Bundle bundolf){
          try {
-             if(bundolf.getSerializable("currentUser") != null) bundolf.remove("currentUser");
+             if(bundolf.containsKey("currentUser")) bundolf.remove("currentUser");
              currentUser.fetchSelf(dbHelper);
              bundolf.putSerializable("currentUser", currentUser);
          }catch (Exception e){

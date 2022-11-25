@@ -103,22 +103,18 @@ public class book_fragment extends Fragment {
 
     void placeBook(){
         for(Seat st : Chosen) {
-            Ticket tkinstance = new Ticket(0, currentMovie.getUid(), st.getSeatnumber(), currentMovie.getDay(), currentMovie.getTime(), currentMovie.getCinema(), Helper.toISODateString(new Date()), "");
+            Ticket tkinstance = new Ticket(currentUser.getUid(), currentMovie.getUid(), st.getSeatnumber(), currentMovie.getDay(), currentMovie.getTime(), currentMovie.getCinema(), Helper.toISODateString(new Date()), "");
             Bitmap qr = Helper.genQr(String.format("Movie : %s, Seat : %s, User : %s ", currentMovie.getTitle(), st.getSeatnumber() + "", currentUser.getUsername()));
-
-            tkinstance.saveState(getContext(), dbHelper, true);
             try{
-
                 ContextWrapper cw = new ContextWrapper(getContext());
                 File directory = cw.getDir("tickets", Context.MODE_PRIVATE);
                 File file = new File(directory, Helper.toISODateString(new Date()) + "_TICKET_"
                         + Helper.randomKey(8) + ".jpg");
-
                 Helper.saveImage(file, qr);
-
                 String abspath = file.toString();
                 tkinstance.setBrcode(abspath);
-            }catch (Exception e){}
+                tkinstance.saveState(getContext(), dbHelper, true);
+            }catch (Exception e){ System.out.println("ERROR DES " + e);}
             currentMovie.takeSeat(st.getSeatnumber());
             tkinstance.fetchSelf(dbHelper);
         }
@@ -139,7 +135,7 @@ public class book_fragment extends Fragment {
         success.show();
 
         ((TextView) success.findViewById(R.id.clickEmail)).setOnClickListener(JohnySinsei->{
-            Toast.makeText(getContext(), "Waiting for My Tickets Fragment", Toast.LENGTH_LONG).show();
+            success.dismiss();
             Home parent = (Home) getActivity();
             parent.swtchRoute(5, getArguments());
         });

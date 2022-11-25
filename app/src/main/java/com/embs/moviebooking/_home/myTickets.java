@@ -37,8 +37,6 @@ public class myTickets extends Fragment {
         m = new myTicketsAdapter(v.getContext(), Ticket.getAllUserTickets(d, currentUser.getUid()));
         tickets.setAdapter(m);
 
-
-
         return  v;
     }
 }
