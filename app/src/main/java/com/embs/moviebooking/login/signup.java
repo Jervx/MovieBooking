@@ -41,7 +41,7 @@ public class signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         dbHelper = new DatabaseHelper(this);
         email = findViewById(R.id.email);
-        username = findViewById(R.id.username);
+        username = findViewById(R.id.usernameeditable);
         pass = findViewById(R.id.pass);
         confirm_pass = findViewById(R.id.confirm_pass);
         btnlogin = findViewById(R.id.btnlogin);

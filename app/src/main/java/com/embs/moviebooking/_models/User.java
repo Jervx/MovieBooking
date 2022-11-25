@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.embs.moviebooking._utils.DatabaseHelper;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class User implements Serializable {
 
@@ -143,6 +144,7 @@ public class User implements Serializable {
     public void fetchSelf(DatabaseHelper dbHelper){
         try{
             Cursor findUser = dbHelper.execRawQuery(String.format("SELECT * FROM user WHERE email = '%s';", email), null);
+
             if (findUser == null || findUser.getCount() == 0 || !findUser.moveToNext()) return;
             this.setUid(findUser.getInt(0));
             this.setImage(findUser.getString(1));
@@ -154,10 +156,13 @@ public class User implements Serializable {
             System.out.println("ERR ON FETCH " + e);
         }
     }
+
     @Override
     public String toString() {
         return "User{" +
                 "uid=" + uid +
+                ", state=" + state +
+                ", image='" + image + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

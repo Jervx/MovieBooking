@@ -98,6 +98,7 @@ public class Helper {
                 fos.flush();
                 fos.close();
             } catch (java.io.IOException e) {
+                System.out.println("Helper write image ");
                 e.printStackTrace();
             }
         }

@@ -11,10 +11,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.embs.moviebooking.R;
@@ -30,9 +34,12 @@ public class settings extends Fragment {
 
     private Bitmap bitmap;
     private Boolean hasNewImage = false;
-    private ImageView profile_image;
+    private ImageView cover;
     private User currentUser;
     private DatabaseHelper dbHelper;
+    private TextView staticid, staticemail, staticusername;
+    private EditText usernameeditable, passwordeditable;
+    private Button savebtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +47,34 @@ public class settings extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
         dbHelper = new DatabaseHelper(getContext());
+
+        currentUser = (User) getArguments().get("currentUser");
+
+        System.out.println("CURR " + currentUser.toString());
+
+        staticid = v.findViewById(R.id.staticid);
+        staticemail = v.findViewById(R.id.staticemail);
+        staticusername = v.findViewById(R.id.staticusername);
+        usernameeditable = v.findViewById(R.id.usernameeditable);
+        passwordeditable = v.findViewById(R.id.passwordeditable);
+
+        cover = v.findViewById(R.id.cover);
+        cover.setOnClickListener(JohnySensei -> {
+            Intent pickGal = new Intent(Intent.ACTION_PICK);
+            pickGal.setType("image/*");
+            pickGal.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(pickGal, 1000);
+        });
+
+        usernameeditable = v.findViewById(R.id.usernameeditable);
+        passwordeditable = v.findViewById(R.id.passwordeditable);
+        savebtn = v.findViewById(R.id.savebtn);
+
+        savebtn.setOnClickListener(JohnySensei -> {
+            saveChange();
+        });
+
+        render();
 
         return v;
     }
@@ -51,45 +86,72 @@ public class settings extends Fragment {
             if (resultCode == parent.RESULT_OK && requestCode == 1000) {
                 Uri targetUri = data.getData();
                 bitmap = BitmapFactory.decodeStream(parent.getContentResolver().openInputStream(targetUri));
-
                 hasNewImage = true;
-                profile_image.setImageBitmap(bitmap);
-//                handleType();
-            } else if (resultCode == Activity.RESULT_CANCELED) { System.out.println("CANCELLED "); }
-        } catch (Exception e) { System.out.println("Fire ERR " + e); }
+                cover.setImageBitmap(bitmap);
+//              handleType();
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                System.out.println("CANCELLED ");
+            }
+        } catch (Exception e) {
+            System.out.println("Fire ERR " + e);
+        }
     }
 
     // TODO ONCE xml layout done
-    void render(){
+    void render() {
+        staticid.setText(currentUser.getUid() + "");
+        staticemail.setText(currentUser.getEmail());
+        staticusername.setText(currentUser.getUsername());
 
+        usernameeditable.setText(currentUser.getUsername());
+        passwordeditable.setText("");
+
+
+        if (currentUser.getImage() != null) {
+            try {
+                File imgFile = new File(currentUser.getImage());
+                if (imgFile.exists()) {
+                    cover.setImageBitmap(Helper.getImage(new File(currentUser.getImage())));
+                }
+            } catch (Exception e) {
+                System.out.println("ERR IMAGE CUZ " + e);
+            }
+        }
     }
 
     void saveChange() {
         // TODO AFTER settings xml completed
-//        currentUser.setUsername(newName);
+        currentUser.setUsername(usernameeditable.getText().toString());
 
-//        if (password.getText().toString().length() > 0)
-//            currentUser.setPassword(Helper.hashPassword(newPassword));
+        if (passwordeditable.getText().toString().length() > 0)
+            currentUser.setPassword(Helper.hashPassword(passwordeditable.getText().toString()));
 
-        try{
+        if (hasNewImage) {
+            try {
+                ContextWrapper cw = new ContextWrapper(getContext());
+                File directory = cw.getDir("profiles", Context.MODE_PRIVATE);
+                File file = new File(directory, Helper.toISODateString(new Date()) + "_PROFILE_"
+                        + Helper.randomKey(8) + ".jpg");
+                System.out.println("WORK A");
+                Helper.saveImage(file, bitmap);
+                String abspath = file.toString();
 
-            ContextWrapper cw = new ContextWrapper(getContext());
-            File directory = cw.getDir("profiles", Context.MODE_PRIVATE);
-            File file = new File(directory, Helper.toISODateString(new Date()) + "_PROFILE_"
-                    + Helper.randomKey(8) + ".jpg");
+                if(currentUser.getImage() != null){
+                    String prevImg = currentUser.getImage();
+                    System.out.println("WORK D");
 
-            Helper.saveImage(file, bitmap);
-
-            String abspath = file.toString();
-            String prevImg = currentUser.getImage();
-            Helper.deleteFile(prevImg);
-            currentUser.setImage(abspath);
-        }catch (Exception e){}
-
+                    Helper.deleteFile(prevImg);
+                }
+                currentUser.setImage(abspath);
+            } catch (Exception e) {
+                System.out.println("SETTED ERR " + e);
+            }
+        }
         currentUser.saveState(getContext(), dbHelper, false);
         currentUser.fetchSelf(dbHelper);
+        System.out.println(currentUser.toString());
 
-//        reInit();
+        render();
 
         Toast.makeText(getContext(), "Changes Saved", Toast.LENGTH_LONG).show();
     }
