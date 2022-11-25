@@ -1,6 +1,7 @@
 package com.embs.moviebooking._utils;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -100,6 +101,12 @@ public class Helper {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static Bitmap getImage(File f){
+        Bitmap btm = null;
+        if (f.exists()) btm = BitmapFactory.decodeFile(f.getAbsolutePath());
+        return btm;
     }
 
     public static void deleteFile(String filepath){

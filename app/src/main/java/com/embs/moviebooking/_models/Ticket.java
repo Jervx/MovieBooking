@@ -3,10 +3,13 @@ package com.embs.moviebooking._models;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.widget.Toast;
 
 import com.embs.moviebooking._utils.DatabaseHelper;
+import com.embs.moviebooking._utils.Helper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -107,6 +110,10 @@ public class Ticket {
 
     public void setBrcode(String brcode) {
         this.brcode = brcode;
+    }
+
+    public Bitmap getBrcdBitmap(){
+        return Helper.getImage(new File(getBrcode()));
     }
 
     private ContentValues getSelfContentValues(){
