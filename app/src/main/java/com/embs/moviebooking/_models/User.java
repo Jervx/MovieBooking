@@ -107,7 +107,7 @@ public class User implements Serializable {
         vals.put("email", this.email);
         vals.put("username", this.username);
         vals.put("password", this.password);
-        vals.put("state", 1);
+        vals.put("state", state);
         return vals;
     }
 
