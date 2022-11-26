@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +20,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class login extends AppCompatActivity {
     private TextView signup;
-    private TextInputEditText email, pass;
-    private Button btnlogin;
+    private EditText email, pass;
     private Button login;
 
     @Override
@@ -31,8 +31,8 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
 
-        email = findViewById(R.id.email);
-        pass = findViewById(R.id.pass);
+        email = findViewById(R.id.e);
+        pass = findViewById(R.id.passwd);
 
         login = findViewById(R.id.login);
         signup = findViewById(R.id.signup);
@@ -40,21 +40,16 @@ public class login extends AppCompatActivity {
         login.setOnClickListener( JohnySinsei -> {
             try{
                 String _email = email.getText().toString(), _pass = pass.getText().toString();
-
                 User usr = new User(_email);
-
                 if(!usr.checkIfAlreadyExist(dbHelper)){
                     Toast.makeText(this, "User doesn't exist", Toast.LENGTH_LONG).show();
                     return;
                 }
-
                 usr.fetchSelf(dbHelper);
-
                 if(!Helper.comparePassword(_pass, usr.getPassword())){
                     Toast.makeText(this, "Wrong Credentail", Toast.LENGTH_LONG).show();
                     return;
                 }
-
                 usr.setState(1);
                 usr.saveState(getApplicationContext(), dbHelper, false);
 

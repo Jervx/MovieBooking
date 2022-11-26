@@ -58,7 +58,7 @@
             <EditText
                 android:padding="10dp"
                 android:background="@null"
-                android:id="@+id/email"
+                android:id="@+id/e"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableLeft="@drawable/person"
@@ -78,7 +78,7 @@
             <EditText
                 android:padding="10dp"
                 android:background="@null"
-                android:id="@+id/pass"
+                android:id="@+id/passwd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableLeft="@drawable/password"

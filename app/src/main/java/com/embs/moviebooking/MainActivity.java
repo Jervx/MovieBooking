@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-        dbHelper.dropDbs(new String[] {"movie", "ticket", "user"});
-        dbHelper.checkTableExist();
+//        dbHelper.dropDbs(new String[] {"movie", "ticket", "user"});
+//        dbHelper.checkTableExist();
 //        dbHelper.truncateDbs(new String[] {"movie"});
 //        dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
 //
