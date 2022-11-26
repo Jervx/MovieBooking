@@ -143,7 +143,7 @@ public class User implements Serializable {
     }
     public void fetchSelf(DatabaseHelper dbHelper){
         try{
-            Cursor findUser = dbHelper.execRawQuery(String.format("SELECT * FROM user WHERE email = '%s';", email), null);
+            Cursor findUser = dbHelper.execRawQuery(String.format("SELECT * FROM user WHERE email='%s';", email), null);
 
             if (findUser == null || findUser.getCount() == 0 || !findUser.moveToNext()) return;
             this.setUid(findUser.getInt(0));
@@ -152,6 +152,8 @@ public class User implements Serializable {
             this.setUsername(findUser.getString(3));
             this.setPassword(findUser.getString(4));
             this.setState(findUser.getInt(5));
+
+            System.out.println("INITSED ");
         }catch(Exception e){
             System.out.println("ERR ON FETCH " + e);
         }

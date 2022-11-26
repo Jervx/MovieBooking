@@ -54,7 +54,7 @@ public class login extends AppCompatActivity {
                 usr.saveState(getApplicationContext(), dbHelper, false);
 
                 Intent homeIntent = new Intent(getApplicationContext(), Home.class);
-                homeIntent.putExtra("usr", usr);
+                homeIntent.putExtra("currentUser", usr);
 
                 startActivity(homeIntent);
             }catch (Exception e){ System.out.println("ERRR " + e); }
@@ -65,17 +65,7 @@ public class login extends AppCompatActivity {
         login = findViewById(R.id.login);
 
         signup.setClickable(true);
-        clickMeBaby();
-    }
 
-    public void clickMeBaby(){
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goToHome = new Intent(getApplicationContext(), Home.class);
-                startActivity(goToHome);
-            }
-        });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +74,7 @@ public class login extends AppCompatActivity {
             }
         });
     }
+
 
 
 
