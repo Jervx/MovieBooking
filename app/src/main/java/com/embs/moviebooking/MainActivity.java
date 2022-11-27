@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 if(hasLoggedIn == null || hasLoggedIn.getCount() == 0){
                     hasLoggedIn.close();
                     Intent front = new Intent(getApplicationContext(), front.class);
