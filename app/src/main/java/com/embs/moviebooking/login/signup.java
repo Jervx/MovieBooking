@@ -165,7 +165,7 @@ public class signup extends AppCompatActivity {
         newUsr.setState(1);
         if (newUsr.saveState(this, dbHelper, true)) {
             Intent homeIntent = new Intent(getApplicationContext(), Home.class);
-            homeIntent.putExtra("usr", newUsr);
+            homeIntent.putExtra("currentUser", newUsr);
             startActivity(homeIntent);
         }
     }
