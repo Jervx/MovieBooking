@@ -95,16 +95,13 @@ public class settings extends Fragment {
                 logoutconf.dismiss();
             });
 
-            ((Button) logoutconf.findViewById(R.id.no)).setOnClickListener(JohnySinsei2 -> {
+            ((Button) logoutconf.findViewById(R.id.No)).setOnClickListener(JohnySinsei2 -> {
                 logoutconf.dismiss();
             });
         });
-
         render();
-
         return v;
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Home parent = (Home) getActivity();
