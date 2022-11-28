@@ -29,6 +29,7 @@ import com.embs.moviebooking.R;
 import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
+import com.embs.moviebooking.login.signup;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,7 +42,7 @@ public class settings extends Fragment {
     private ImageView cover;
     private User currentUser;
     private DatabaseHelper dbHelper;
-    private TextView staticid, staticemail, staticusername;
+    private TextView  staticemail, staticusername, sw;
     private EditText usernameeditable, passwordeditable;
     private Button savebtn;
 
@@ -56,12 +57,13 @@ public class settings extends Fragment {
 
         System.out.println("CURR " + currentUser.toString());
 
-        staticid = v.findViewById(R.id.staticid);
+
         staticemail = v.findViewById(R.id.staticemail);
         staticusername = v.findViewById(R.id.staticusername);
         usernameeditable = v.findViewById(R.id.usernameeditable);
         passwordeditable = v.findViewById(R.id.passwordeditable);
-
+        sw = v.findViewById(R.id.sw);
+        sw.setClickable(true);
         cover = v.findViewById(R.id.cover);
         cover.setOnClickListener(JohnySensei -> {
             Intent pickGal = new Intent(Intent.ACTION_PICK);
@@ -76,6 +78,11 @@ public class settings extends Fragment {
 
         savebtn.setOnClickListener(JohnySensei -> {
             saveChange();
+        });
+
+        sw.setOnClickListener(JohnySinsei2 -> {
+            Intent goToSignin = new Intent(getContext(), signup.class);
+            startActivity(goToSignin);
         });
 
         ((TextView) v.findViewById(R.id.logout)).setOnClickListener(JohnySinsei->{
@@ -122,7 +129,7 @@ public class settings extends Fragment {
 
     // TODO ONCE xml layout done
     void render() {
-        staticid.setText(currentUser.getUid() + "");
+
         staticemail.setText(currentUser.getEmail());
         staticusername.setText(currentUser.getUsername());
 
@@ -162,7 +169,6 @@ public class settings extends Fragment {
                 if(currentUser.getImage() != null){
                     String prevImg = currentUser.getImage();
                     System.out.println("WORK D");
-
                     Helper.deleteFile(prevImg);
                 }
                 currentUser.setImage(abspath);

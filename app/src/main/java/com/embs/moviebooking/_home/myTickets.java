@@ -23,7 +23,7 @@ public class myTickets extends Fragment {
     ListView tickets;
     myTicketsAdapter m;
     User currentUser;
-    TextView label;
+    TextView label,show;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,12 +32,15 @@ public class myTickets extends Fragment {
         System.out.println("INFLATED : ");
         DatabaseHelper d = new DatabaseHelper(v.getContext());
         currentUser = (User) getArguments().getSerializable("currentUser");
-        System.out.println("CURRE USER TICKET: " + currentUser.toString());
+        System.out.println("CURRENT USER TICKET: " + currentUser.toString());
         tickets = v.findViewById(R.id.ticketList);
         label = v.findViewById(R.id.ticketLable);
+        show = v.findViewById(R.id.show);
 
         m = new myTicketsAdapter(v.getContext(), Ticket.getAllUserTickets(d, currentUser.getUid()));
         tickets.setAdapter(m);
+
+        if(Ticket.getAllUserTickets(d, currentUser.getUid()).size() != 0) show.setVisibility(View.GONE);
 
         return  v;
     }
