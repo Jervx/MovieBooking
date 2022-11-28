@@ -3,11 +3,15 @@ package com.embs.moviebooking._models;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.widget.Toast;
 
 import com.embs.moviebooking._utils.DatabaseHelper;
+import com.embs.moviebooking._utils.Helper;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Ticket {
     int uid, userid, movieid, seatnumber;
@@ -108,6 +112,10 @@ public class Ticket {
         this.brcode = brcode;
     }
 
+    public Bitmap getBrcdBitmap(){
+        return Helper.getImage(new File(getBrcode()));
+    }
+
     private ContentValues getSelfContentValues(){
         ContentValues vals = new ContentValues();
         vals.put("userid", this.userid);
@@ -121,13 +129,19 @@ public class Ticket {
         return vals;
     }
 
+    public Movie getMatchedMovie(DatabaseHelper dbHelper){
+        Movie mv = new Movie(movieid);
+        mv.fetchSelf(dbHelper);
+        return mv;
+    }
+
     public boolean saveState(Context context, DatabaseHelper dbHelper, boolean isNew){
         if(isNew){
             if(dbHelper.insert(getSelfContentValues(), "ticket")){
                 System.out.println("Ticket : Ticket Saved Self");
                 return true;
             }else{
-                Toast.makeText(null, "Failed to create ticket", Toast.LENGTH_LONG);
+                Toast.makeText(context, "Failed to create ticket", Toast.LENGTH_LONG);
                 return false;
             }
         }else{
@@ -144,19 +158,25 @@ public class Ticket {
 
     public void fetchSelf(DatabaseHelper dbHelper){
         try{
-            Cursor cur = dbHelper.execRawQuery(String.format("SELECT * FROM ticket WHERE uid=%d;", uid), null);
+            System.out.println("Before " + toString());
+
+            Cursor cur = dbHelper.execRawQuery(String.format("SELECT uid, userid, movieid, seatnumber, day, time, cinema, purchaseddate, brcode from ticket WHERE brcode='%s';", getBrcode()), null);
+            String[] columnNames = cur.getColumnNames();
+            System.out.println("DEEP | " + Arrays.deepToString(columnNames));
             if (cur == null || cur.getCount() == 0 || !cur.moveToNext()) return;
             setUid(cur.getInt(0));
             setUserid(cur.getInt(1));
             setMovieid(cur.getInt(2));
-            setDay(cur.getString(3));
-            setTime(cur.getString(4));
-            setCinema(cur.getString(5));
-            setSeatnumber(cur.getInt(6));
+            setSeatnumber(cur.getInt(3));
+            setDay(cur.getString(4));
+            setTime(cur.getString(5));
+            setCinema(cur.getString(6));
             setPurchaseddate(cur.getString(7));
             setBrcode(cur.getString(8));
+
+            System.out.println("After " + toString());
         }catch(Exception e){
-            System.out.println("ERR ON FETCH " + e);
+            System.out.println("Ticket ERR ON FETCH " + e);
         }
     }
 
@@ -168,21 +188,21 @@ public class Ticket {
     public static ArrayList<Ticket> getAllTickets(DatabaseHelper dbHelper){
         ArrayList <Ticket> all = new ArrayList<>();
 
-        Cursor tkts = dbHelper.execRawQuery("SELECT * FROM ticket", null);
+        Cursor tkts = dbHelper.execRawQuery("SELECT uid, userid, movieid, seatnumber, day, time, cinema, purchaseddate, brcode FROM ticket", null);
         while(tkts.moveToNext()) all.add(new Ticket(
                 tkts.getInt(0),
                 tkts.getInt(1),
                 tkts.getInt(2),
-                tkts.getString(3),
+                tkts.getInt(3),
                 tkts.getString(4),
                 tkts.getString(5),
                 tkts.getString(6),
-                tkts.getString(7)
+                tkts.getString(7),
+                tkts.getString(8)
         ));
 
         return all;
     }
-
     /**Retrieve ang mga all ticket of the specified user desu - jervx
      *
      * @param dbHelper need ko ng instance of DatabaseHelper desu
@@ -191,22 +211,26 @@ public class Ticket {
      */
     public static ArrayList<Ticket> getAllUserTickets(DatabaseHelper dbHelper, int uid){
         ArrayList <Ticket> all = new ArrayList<>();
+        System.out.println("CURRENT USER ID "+uid);
+        Cursor tkts = dbHelper.execRawQuery(String.format("SELECT uid, userid, movieid, seatnumber, day, time, cinema, purchaseddate, brcode FROM ticket where userid='%d'", uid), null);
 
-        Cursor tkts = dbHelper.execRawQuery("SELECT * FROM ticket where userid="+uid, null);
-        while(tkts.moveToNext()) all.add(new Ticket(
-                tkts.getInt(0),
-                tkts.getInt(1),
-                tkts.getInt(2),
-                tkts.getString(3),
-                tkts.getString(4),
-                tkts.getString(5),
-                tkts.getString(6),
-                tkts.getString(7)
-        ));
-
+        System.out.println("COUNT RETRIEVED  "+ tkts.getCount());
+        while(tkts.moveToNext()) {
+            Ticket newtk = new Ticket(
+                    tkts.getInt(0),
+                    tkts.getInt(1),
+                    tkts.getInt(2),
+                    tkts.getInt(3),
+                    tkts.getString(4),
+                    tkts.getString(5),
+                    tkts.getString(6),
+                    tkts.getString(7),
+                    tkts.getString(8)
+            );
+            all.add(newtk);
+        }
         return all;
     }
-
     @Override
     public String toString() {
         return "Ticket{" +

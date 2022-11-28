@@ -1,5 +1,11 @@
 package com.embs.moviebooking._home;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,7 +28,9 @@ import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
 import com.embs.moviebooking.customview.Seat;
+import com.embs.moviebooking.front.front;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -31,7 +39,7 @@ import java.util.Date;
 public class book_fragment extends Fragment {
 
     private GridLayout left, right;
-    private TextView titletxtv, desctxtv, cinemaNo, availableSeat, tekenSeat, total;
+    private TextView titletxtv, genretxtv, cinemaNo, availableSeat, tekenSeat, total;
     private ImageView moviebanner;
     private Button bookbtn;
 
@@ -56,6 +64,7 @@ public class book_fragment extends Fragment {
         Bundle bundolf = this.getArguments();
         try{
             currentMovie = (Movie) bundolf.getSerializable("currentMovie");
+            currentUser = (User) bundolf.getSerializable("currentUser");
         }catch (Exception e){  }
 
         seatLeft = new ArrayList<>();
@@ -64,7 +73,7 @@ public class book_fragment extends Fragment {
         left = v.findViewById(R.id.left);
         right = v.findViewById(R.id.right);
         titletxtv = v.findViewById(R.id.titletxtv);
-        desctxtv = v.findViewById(R.id.desctxtv);
+        genretxtv = v.findViewById(R.id.generetxtv);
         cinemaNo = v.findViewById(R.id.cinemaNo);
         availableSeat = v.findViewById(R.id.availableSeat);
         tekenSeat = v.findViewById(R.id.takenSeat);
@@ -78,6 +87,8 @@ public class book_fragment extends Fragment {
 
         if(currentMovie == null){
             Toast.makeText(getContext(), "You haven't selected a movie", Toast.LENGTH_LONG).show();
+            bookbtn.setTextSize(12);
+            total.setTextSize(12);
             bookbtn.setText("No Chosen Movie");
             total.setText("No Chosen Movie");
             bookbtn.setClickable(false);
@@ -92,9 +103,20 @@ public class book_fragment extends Fragment {
 
     void placeBook(){
         for(Seat st : Chosen) {
-            Ticket tkinstance = new Ticket(0, currentMovie.getUid(), st.getSeatnumber(), currentMovie.getDay(), currentMovie.getTime(), currentMovie.getCinema(), Helper.toISODateString(new Date()), "");
+            Ticket tkinstance = new Ticket(currentUser.getUid(), currentMovie.getUid(), st.getSeatnumber(), currentMovie.getDay(), currentMovie.getTime(), currentMovie.getCinema(), Helper.toISODateString(new Date()), "");
+            Bitmap qr = Helper.genQr(String.format("Movie : %s, Seat : %s, User : %s ", currentMovie.getTitle(), st.getSeatnumber() + "", currentUser.getUsername()));
+            try{
+                ContextWrapper cw = new ContextWrapper(getContext());
+                File directory = cw.getDir("tickets", Context.MODE_PRIVATE);
+                File file = new File(directory, Helper.toISODateString(new Date()) + "_TICKET_"
+                        + Helper.randomKey(8) + ".jpg");
+                Helper.saveImage(file, qr);
+                String abspath = file.toString();
+                tkinstance.setBrcode(abspath);
+                tkinstance.saveState(getContext(), dbHelper, true);
+            }catch (Exception e){ System.out.println("ERROR DES " + e);}
             currentMovie.takeSeat(st.getSeatnumber());
-            tkinstance.saveState(getContext(), dbHelper, true);
+            tkinstance.fetchSelf(dbHelper);
         }
 
         Toast.makeText(getContext(), "Generated " + Chosen.size() + " tickets to your account", Toast.LENGTH_LONG).show();
@@ -103,7 +125,25 @@ public class book_fragment extends Fragment {
         Chosen = new ArrayList<>();
         seatLeft = new ArrayList<>();
         seatRight = new ArrayList<>();
+
         currentMovie.saveState(getContext(), dbHelper, false);
+
+        Dialog success = new Dialog(getContext());
+        success.setContentView(R.layout.booked_successfuly);
+        success.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        success.getWindow().getAttributes().windowAnimations = R.style.diagAnim;
+        success.show();
+
+        ((TextView) success.findViewById(R.id.clickEmail)).setOnClickListener(JohnySinsei->{
+            success.dismiss();
+            Home parent = (Home) getActivity();
+            parent.swtchRoute(5, getArguments());
+        });
+
+        ((Button) success.findViewById(R.id.done)).setOnClickListener(JohnySinsei->{
+            success.dismiss();
+        });
+
         genSeat();
         render();
         renderMovieInfo();
@@ -165,7 +205,7 @@ public class book_fragment extends Fragment {
 
     void renderMovieInfo(){
         titletxtv.setText(currentMovie.getTitle());
-        desctxtv.setText(currentMovie.getDescription());
+        genretxtv.setText(currentMovie.getGenre());
         cinemaNo.setText(currentMovie.getCinema());
         availableSeat.setText(currentMovie.getSeats().length() > 0 ? currentMovie.getSeats().split(",").length+"" : "0");
         tekenSeat.setText((seatsleft.length + seatsright.length - (currentMovie.getSeats().length() > 0 ? currentMovie.getSeats().split(",").length  : 0)) + "");

@@ -45,7 +45,6 @@ public class movie_details extends Fragment {
             Home parent = (Home) getActivity();
             parent.swtchRoute(2, bundolf);
         });
-
         title.setText( currentMovie.getTitle() );
         desc.setText( currentMovie.getDescription() );
         cost.setText( currentMovie.getCost()+"" );

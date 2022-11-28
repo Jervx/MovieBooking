@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.embs.moviebooking._utils.DatabaseHelper;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class User implements Serializable {
 
@@ -106,7 +107,7 @@ public class User implements Serializable {
         vals.put("email", this.email);
         vals.put("username", this.username);
         vals.put("password", this.password);
-        vals.put("state", 1);
+        vals.put("state", state);
         return vals;
     }
 
@@ -122,7 +123,6 @@ public class User implements Serializable {
                 Toast.makeText(context, "User already exist", Toast.LENGTH_SHORT).show();
                 return false;
             }
-
             if(dbHelper.insert(getSelfContentValues(), "user")){
                 System.out.println("USER : New User Saved Self");
                 return true;
@@ -141,10 +141,10 @@ public class User implements Serializable {
             }
         }
     }
-
     public void fetchSelf(DatabaseHelper dbHelper){
         try{
-            Cursor findUser = dbHelper.execRawQuery(String.format("SELECT * FROM user WHERE email = '%s';", email), null);
+            Cursor findUser = dbHelper.execRawQuery(String.format("SELECT * FROM user WHERE email='%s';", email), null);
+
             if (findUser == null || findUser.getCount() == 0 || !findUser.moveToNext()) return;
             this.setUid(findUser.getInt(0));
             this.setImage(findUser.getString(1));
@@ -152,6 +152,8 @@ public class User implements Serializable {
             this.setUsername(findUser.getString(3));
             this.setPassword(findUser.getString(4));
             this.setState(findUser.getInt(5));
+
+            System.out.println("INITSED ");
         }catch(Exception e){
             System.out.println("ERR ON FETCH " + e);
         }
@@ -161,6 +163,8 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "uid=" + uid +
+                ", state=" + state +
+                ", image='" + image + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

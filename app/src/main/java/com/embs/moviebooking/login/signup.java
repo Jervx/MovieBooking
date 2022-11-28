@@ -22,12 +22,11 @@ import com.embs.moviebooking._models.User;
 import com.embs.moviebooking._utils.DatabaseHelper;
 import com.embs.moviebooking._utils.Helper;
 import com.embs.moviebooking._utils.JavaMailAPI;
-import com.embs.moviebooking.front.front;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class signup extends AppCompatActivity {
     TextView signin,emailName,cdown,exp,resend;
-    private TextInputEditText email, username, pass, confirm_pass;
+    private EditText email, username, pass, confirm_pass;
     private Button btnlogin, verifyCode;
     private String key;
     private User newUsr;
@@ -42,9 +41,9 @@ public class signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         dbHelper = new DatabaseHelper(this);
         email = findViewById(R.id.email);
-        username = findViewById(R.id.username);
+        username = findViewById(R.id.user);
         pass = findViewById(R.id.pass);
-        confirm_pass = findViewById(R.id.confirm_pass);
+        confirm_pass = findViewById(R.id.con_pass);
         btnlogin = findViewById(R.id.btnlogin);
         btnlogin.setOnClickListener(JohnySensei -> {
             String _email = email.getText().toString(),
@@ -91,7 +90,7 @@ public class signup extends AppCompatActivity {
         verify.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         verify.getWindow().getAttributes().windowAnimations = R.style.diagAnim;
         code =  verify.findViewById(R.id.code);
-        verifyCode = verify.findViewById(R.id.verify);
+        verifyCode = verify.findViewById(R.id.done);
         emailName = verify.findViewById(R.id.clickEmail);
         emailName.setText(email.getText().toString());
         closeVeriDialog = verify.findViewById(R.id.closeV);
@@ -166,7 +165,7 @@ public class signup extends AppCompatActivity {
         newUsr.setState(1);
         if (newUsr.saveState(this, dbHelper, true)) {
             Intent homeIntent = new Intent(getApplicationContext(), Home.class);
-            homeIntent.putExtra("usr", newUsr);
+            homeIntent.putExtra("currentUser", newUsr);
             startActivity(homeIntent);
         }
     }

@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-        dbHelper.dropDbs(new String[] {"movie"});
+//        dbHelper.dropDbs(new String[] {"movie", "ticket", "user"});
         dbHelper.checkTableExist();
-        dbHelper.truncateDbs(new String[] {"movie"});
+//        dbHelper.truncateDbs(new String[] {"movie"});
 //        dummyUser = new User("louellagracechua@gmail.com", "Jervx", Helper.hashPassword("helloworld"));
 //
 //        if(!dummyUser.checkIfAlreadyExist(dbHelper)){
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 new Movie("mvc_sncdhdghg2", "Sonic the Hedgehog 2", "After settling in Green Hills, Sonic is eager to prove that he has what it takes to be a true hero. His test comes when Dr. Robotnik returns with a new partner, Knuckles, in search of a mystical emerald that has the power to destroy civilizations. Sonic teams up with his own sidekick, Tails, and together they embark on a globe-trotting journey to find the emerald before it falls into the wrong hands.", "Cinema 1", "Dec 5, 2022", "10:30 AM", Helper.seatGenerator(1, 32), "", "Adventure", "2h 2m", 169),
                 new Movie("mvc_myfthrsdrgn", "My Father's Dragon", "Elmer, who is having trouble adjusting to his new life, decides to set out to find a wild island and rescue a young dragon. His adventures will lead him to encounter ferocious beasts, discover a mysterious place and make a new friendship.", "Cinema 1", "Dec 6, 2022", "1:30 PM", Helper.seatGenerator(1, 32), "", "Animation/Comedy", "1h 39m", 210)
         };
-
         for(Movie m : mv){
             m.saveState(this, dbHelper, true);
             m.fetchSelf(dbHelper);
@@ -68,12 +67,10 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     hasLoggedIn.moveToNext();
                     dummyUser = new User(hasLoggedIn.getString(2));
-                    System.out.println("USER DESU");
-                    System.out.println(dummyUser.toString());
                     dummyUser.fetchSelf(dbHelper);
 
                     Intent homeIntent = new Intent(getApplicationContext(), Home.class);
-                    homeIntent.putExtra("usr", dummyUser);
+                    homeIntent.putExtra("currentUser", dummyUser);
                     startActivity(homeIntent);
                     finish();
                 }
